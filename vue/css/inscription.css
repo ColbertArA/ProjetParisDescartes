@@ -35,7 +35,7 @@ h1{
     margin-bottom: 1.5em;
 }
 
-label, legend, h1{
+label, legend, h1, p{
     font-family: "Raleway", sans-serif;
 }
 
@@ -47,6 +47,16 @@ legend{
 
 p, label{
     text-align: center;
+}
+
+.option{
+    text-align: right;
+}
+
+label{
+    display: inline-block;
+    width: 90px;
+    text-align: right;
 }
 
 .button{
