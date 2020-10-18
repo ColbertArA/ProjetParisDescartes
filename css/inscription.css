@@ -1,0 +1,81 @@
+html, body{
+    margin: 0;
+	padding: 0;
+    border: 0;
+    background-image: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Début formulaire */
+
+#page{
+    position: relative;
+    background: #FFF;
+    padding: 6em 4em 6em 4em;
+    border-radius: 6px;
+    margin: 12em 8em 12em 8em;
+    box-shadow:  5px 10px 6px black;
+}
+
+h1{
+    text-align: center;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 36px;
+    margin-top: 0;
+    margin-bottom: 2.5em;
+}
+
+label, legend, h1{
+    font-family: "Raleway", sans-serif;
+}
+
+legend{
+    font-size: 26px;
+    font-weight: 700;
+    
+}
+
+p, label{
+    text-align: center;
+}
+
+.cadre{
+    background-color: #ffffff;
+    width: 500px;
+    margin: 0 auto 15px auto;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.button{
+	border-radius: 100px;
+	background-color: #1e4569;
+	border: 2px solid #1e4569;
+	color: white;
+	font-size: 16px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	line-height: 1.7em;
+	padding: 10px 50px 10px 50px;
+    margin-bottom: 56px;
+    cursor: pointer;
+	display: inline-block;
+	position: relative;
+    transition: 0.3s;
+    text-decoration: none;
+	color: white;
+	font-weight: 300;
+	font-family: "Raleway", sans-serif;
+}
+  
+.button:hover{
+    padding-right: 25px;
+    padding-left: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+  
+
+/* Fin formulaire */
