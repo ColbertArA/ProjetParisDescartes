@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS client(
     mdp_client TEXT NOT NULL,
     mail_client TEXT NOT NULL,
     PRIMARY KEY (id_client)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS entreprise(
     id_entreprise INT(11) NOT NULL AUTO_INCREMENT,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS entreprise(
     mdp_entreprise TEXT NOT NULL,
     mail_entreprise TEXT NOT NULL,
     PRIMARY KEY(id_entreprise)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS vehicule(
     id_vehicule INT(11) NOT NULL AUTO_INCREMENT,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS vehicule(
     location_vehicule TEXT NOT NULL,
     photo_vehicule TEXT NOT NULL,
     PRIMARY KEY (id_vehicule)
-)  ENGINE = InnoDB DEFAULT CHARSET=utf8;
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS facturation(
     id_facturation INT(11) NOT NULL AUTO_INCREMENT,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS facturation(
     valeur_facturation INT NOT NULL,
     etat_faturation BOOLEAN NOT NULL,
     PRIMARY KEY (id_facturation)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE facturation
 ADD ( CONSTRAINT FK_facturation_id_vehicule
