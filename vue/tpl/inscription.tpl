@@ -1,12 +1,3 @@
-<?php
-
-$mail = isset($_POST['mail'])?($_POST['mail']):'';
-$mdp = isset($_POST['mdp'])?($_POST['mdp']):'';
-$nom = isset($_POST['nom'])?($_POST['nom']):'';
-$msg = '';
-
-?>
-
 <!doctype html>
 <html lang="fr">
 
@@ -38,7 +29,7 @@ $msg = '';
 
     <div class="formulaire" id="page">
         <h1>Formulaire d'inscription</h1>
-        <div> <?php echo $msg; ?> </div>
+        <div> <?php echo $msg1; ?> </div>
         <form action="index.php?controle=utilisateur&action=insert" method="POST">
             <fieldset class="cadre">
                 <div class="info">
