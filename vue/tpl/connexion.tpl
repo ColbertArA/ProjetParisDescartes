@@ -7,8 +7,8 @@
 
     <!-- Fichiers CSS -->
 
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/inscription.css">
+    <link rel="stylesheet" href="./vue/css/header.css">
+    <link rel="stylesheet" href="./vue/css/inscription.css">
 </head>
 
 <body>
@@ -17,9 +17,9 @@
 
     <header class="header">
         <ul>
-            <li class="left-item"><a href="../index.html">GoGoVoiture</a></li>
-            <li><a href="inscription.html">S'inscrire</a></li>
-            <li><a href="./connexion.html">Se connecter</a></li>
+            <li class="left-item"><a href="index.php?controle=button&action=gogo">GoGoVoiture</a></li>
+            <li><a href="index.php?controle=button&action=inscription">S'inscrire</a></li>
+            <li><a href="index.php?controle=button&action=connexion">Se connecter</a></li>
         </ul>
     </header>
 
@@ -28,25 +28,24 @@
     <!-- Début page -->
 
     <div class="formulaire" id="page">
-        <form action="#" method="POST">
+        <form action="index.php?controle=utilisateur&action=ident" method="post">
             <fieldset class="cadre">
                 <div class="info">
                     <legend>Connexion</legend>
                     <p>
                         <label for="courriel">Mail</label> :
-                        <input type="email" name="mail" id="mail" required placeholder="utilisateur@mail.com">
-                        <span id="aideCourriel"></span>
+                        <input name="mail" type="email" required placeholder="utilisateur@mail.com">
                     </p>
                     <p>
                         <label for="mdp">Mot de passe</label> :
-                        <input type="password" name="mdp" id="mdp" required>
-                        <span id="aideMdp"></span>
+                        <input name="mdp" type="password" required>
                     </p>
                 </div>
             </fieldset>
             <p>
                 <input type="submit" value="Connexion" class="button"/>
             </p>
+            <div> <?php echo $msg; ?> </div>
         </form>
     </div>
 

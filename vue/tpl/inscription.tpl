@@ -1,3 +1,12 @@
+<?php
+
+$mail = isset($_POST['mail'])?($_POST['mail']):'';
+$mdp = isset($_POST['mdp'])?($_POST['mdp']):'';
+$nom = isset($_POST['nom'])?($_POST['nom']):'';
+$msg = '';
+
+?>
+
 <!doctype html>
 <html lang="fr">
 
@@ -7,8 +16,8 @@
 
     <!-- Fichiers CSS -->
 
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/inscription.css">
+    <link rel="stylesheet" href="./vue/css/header.css">
+    <link rel="stylesheet" href="./vue/css/inscription.css">
 </head>
 
 <body>
@@ -17,9 +26,9 @@
 
     <header class="header">
         <ul>
-            <li class="left-item"><a href="../index.html">GoGoVoiture</a></li>
-            <li><a href="inscription.html">S'inscrire</a></li>
-            <li><a href="connexion.html">Se connecter</a></li>
+            <li class="left-item"><a href="index.php?controle=button&action=gogo">GoGoVoiture</a></li>
+            <li><a href="index.php?controle=button&action=inscription">S'inscrire</a></li>
+            <li><a href="index.php?controle=button&action=connexion">Se connecter</a></li>
         </ul>
     </header>
 
@@ -29,32 +38,33 @@
 
     <div class="formulaire" id="page">
         <h1>Formulaire d'inscription</h1>
-        <form action="/modele/inscription.php" method="POST">
+        <div> <?php echo $msg; ?> </div>
+        <form action="index.php?controle=utilisateur&action=insert" method="POST">
             <fieldset class="cadre">
                 <div class="info">
                     <legend>Inscription</legend>
                     <p>
                         <label for="pseudo">Nom</label> :
-                        <input type="text" name="nom" id="nom" required placeholder="Julien Dupont">
+                        <input type="text" name="nom" required placeholder="Julien Dupont">
                         <span id="nom"></span>
                     </p>
                     <p>
                         <label for="mdp">Mot de passe</label> :
-                        <input type="password" name="mdp" id="mdp" required>
+                        <input type="password" name="mdp" required>
                         <span id="aideMdp"></span>
                     </p>
                     <p>
                         <label for="mdp"> Retapez votre mot de passe</label> :
-                        <input type="password" name="mdp2" id="mdp2" required>
+                        <input type="password" name="mdp2" required>
                         <span id="aideMdp"></span>
                     </p>
                     <p>
                         <label for="courriel">Mail</label> :
-                        <input type="email" name="mail" id="mail" required placeholder="utilisateur@mail.com">
+                        <input type="email" name="mail" required placeholder="utilisateur@mail.com">
                         <span id="aideCourriel"></span>
                     </p>
                     <p>Qui êtes-vous ?<br><br>
-                        <select name="" id="">
+                        <select name="choix">
                             <option value="entreprise">Entreprise</option>
                             <option value="loueur">Loueur</option>
                         </select>
@@ -64,7 +74,6 @@
             <p>
                 <input type="submit" value="S'inscrire" class="button" />
             </p>
-
         </form>
     </div>
 

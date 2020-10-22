@@ -44,11 +44,3 @@ ADD ( CONSTRAINT FK_facturation_id_entreprise
     FOREIGN KEY(id_entreprise)
     REFERENCES vehicule(id_vehicule)
 );
-
-INSERT INTO client (id_client, nom_client, mdp_client ,mail_client) VALUES
-(1, 'Aravindan Colbert', '1234','aravindan.colbert@mail.com'),
-(2, 'Loïc Lim', 'AZERTY','loic.lim@mail.com'),
-(3, 'James Martin', 'password','james.martin@mail.com'),
-(4, 'Karim Karl', 'motdepasse','karim.karl@gmail.com');
-
-INSERT INTO entreprise (id_entreprise, nom_entreprise, mdp_entreprise, mail_entreprise) VALUES

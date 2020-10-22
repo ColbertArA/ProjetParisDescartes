@@ -1,5 +1,7 @@
 <?php
 
+// Ce fichier permet de se connecter à la base de donnée
+
 $hostname = "localhost"; // vs-wamp
 $base = "bd";
 $loginBD = "root";
