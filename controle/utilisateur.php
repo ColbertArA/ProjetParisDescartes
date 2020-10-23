@@ -36,26 +36,26 @@ function ident() {
 
     require ("./modele/connect.php");
 
-    if(isset($mail) && isset($mdp)) {
-        $mail = htmlspecialchars($_POST['mail']);
-        $mdp = htmlspecialchars_decode($_POST['mdp']);
+    // if(isset($mail) && isset($mdp)) {
+    //     $mail = htmlspecialchars($_POST['mail']);
+    //     $mdp = htmlspecialchars_decode($_POST['mdp']);
 
-        $check = $pdo->prepare('SELECT id_client, mail_client, mdp_client FROM client WHERE mail = ?');
-        $check->execute(array($mail));
-        $data = $check->fetch();
-        $row = $check->rowCount();
+    //     $check = $pdo->prepare('SELECT id_client, mail_client, mdp_client FROM client WHERE mail = ?');
+    //     $check->execute(array($mail));
+    //     $data = $check->fetch();
+    //     $row = $check->rowCount();
 
-        if($row ==1) {
-            if(filter_var($mail, FILTER_VALIDATE_MAIL)) {
-                $mdp = hash('sha1', $mail);
+    //     if($row ==1) {
+    //         if(filter_var($mail, FILTER_VALIDATE_MAIL)) {
+    //             $mdp = hash('sha1', $mail);
 
-                if($data['mdp'] === $mdp){
-                    $_SESSION['profil'] = $data['id_client'];
-                    header('Location:index.php?controle=button&action=inscription');
-                } else header('Location:index.php?login_err=mdp');
-            } else header('Location:index.php?login_err=mail');
-        } else header('Location:index.php?login_err=already');
-    } else header('Location:index.php?controle=utilisateur&action=accueil');
+    //             if($data['mdp'] === $mdp){
+    //                 $_SESSION['profil'] = $data['id_client'];
+    //                 header('Location:index.php?controle=button&action=inscription');
+    //             } else header('Location:index.php?login_err=mdp');
+    //         } else header('Location:index.php?login_err=mail');
+    //     } else header('Location:index.php?login_err=already');
+    // } else header('Location:index.php?controle=utilisateur&action=accueil');
 
 
     // if (count($_POST)==0){
