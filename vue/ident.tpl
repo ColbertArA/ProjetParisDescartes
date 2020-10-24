@@ -62,14 +62,16 @@
                     <?php echo $donnees['type_vehicule']; ?> </br>
                     <?php echo $donnees['caract_vehicule']; ?>
                 </p>
-           <?php
+           
+            </div>
+            <div class="annonces" id="page">
+            <?php
 
                 }
                 $sql->closeCursor();
 
             ?>
             </div>
-            
         </div>
     
 
