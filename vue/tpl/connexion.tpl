@@ -46,6 +46,9 @@
                 <input name="connexion" type="submit" value="Connexion" class="button"/>
             </p>
         </form>
+        <div>
+            <?php echo $msg; ?>
+        </div>
     </div>
 
     <!-- Fin page-->

@@ -19,6 +19,6 @@ function gogo() {
 
 //lien vers la page connexion_err en cas de mauvais mot de passe ou mail
 function err_connexion() {
-    require ('./vue/tpl/connexion_err.tpl');
+    require ('./vue/tpl_err/connexion_err.tpl');
 }
 ?>

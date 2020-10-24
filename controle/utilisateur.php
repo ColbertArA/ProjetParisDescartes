@@ -29,10 +29,10 @@ function insert () {
 
 function ident() {
 
-    $mail = $_POST['mail'];
-    $mdp = $_POST['mdp'];
+    $mail = isset($_POST['mail'])?($_POST['mail']):'';
+    $mdp = isset($_POST['mdp'])?($_POST['mdp']):'';
     $c = sha1($mdp);
-    $msg = '';
+    $msg = "";
 
     require ('./modele/connect.php');
 
@@ -41,12 +41,21 @@ function ident() {
     $donnees = $sql->fetch(PDO::FETCH_ASSOC);
     $_SESSION['profil'] = $donnees;
 
-    if($donnees == 0) {
-        header ('Location: index.php?controle=button&action=err_connexion');
+    if (count($_POST) == 0) {
+        require ('./vue/tpl/connexion.tpl');
     } else {
-        
-
+        if($donnees == 0) {
+            //header ('Location: index.php?controle=button&action=err_connexion');
+            $msg="Mot de passe ou mail incorrect !";
+            require ('./vue/tpl/connexion.tpl');
+        } else {
+            $_SESSION['profil'] = $profil;
+    
+        }
     }
+
+
+    
     
 
     // if (count($_POST)==0){
