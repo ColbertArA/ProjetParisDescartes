@@ -40,18 +40,15 @@ function ident() {
     $sql = $pdo->prepare('SELECT * FROM client WHERE mdp_client = :mdp and mail_client = :mail');
     $sql->execute(array('mdp' => $c, 'mail' => $mail));
     $donnees = $sql->fetch(PDO::FETCH_ASSOC);
+    $_SESSION['profil'] = $donnees;
 
-    if($donnees == 0) {
-        header ('Location : index.php?controle=button&action=err_connexion');
-    } else {
-
-    }
-    
-    // if($sql == $mail) {
-    //     echo'Mauvais mot de passe ou mail !';
+    // if($donnees == 0) {
+    //     header ('Location: index.php?controle=button&action=err_connexion');
     // } else {
-    //     require ('./vue/ident.tpl');
+        
+
     // }
+    
 
     // if (count($_POST)==0){
     //     require ("./vue/ident.tpl");
@@ -70,9 +67,9 @@ function ident() {
 }
 
 
-// function deconnection() {
-//     session_destroy();
-// }
+function deconnection() {
+    session_destroy();
+}
 
 
 
