@@ -47,39 +47,32 @@
     <div class="container">
         <div class="down-item">
             <div class="annonces" id="page">
-                <img src="./vue/photos_voitures/W101768559_STANDARD_0.jpg">
-                <p>
-                    Peugeot 206
-                </p>
-                <button class="button"><span><a href="">Voir l'annonce</a></span></button>
-            </div>
-    
-            <div class="annonces" id="page">
-                <img src="./vue/photos_voitures/B101294858_STANDARD_0.jpg">
-                <p>
-                    VOLKSWAGEN POLO IV
-                </p>
-                <button class="button"><span><a href="">Voir l'annonce</a></span></button>
-            </div>
-        </div>
-    
-        <div class="down-item2">
-            <div class="annonces" id="page">
-                <img src="./vue/photos_voitures/E107273672_STANDARD_0.jpg">
-                <p>
-                    FORD FIESTA IV
-                </p>
-                <button class="button"><span><a href="">Voir l'annonce</a></span></button>
-            </div>
+            <?php
 
-            <div class="annonces" id="page">
-                <img src="./vue/photos_voitures/E107273672_STANDARD_0.jpg">
+                require ('./modele/connect.php');
+            
+                //On recupere tout le contenu de la table vehicule
+                $sql = $pdo->query('SELECT * FROM vehicule');
+
+                while ($donnees = $sql->fetch()) {
+            ?>
+
+                <img src="./vue/photos_voitures/<?php echo $donnees['type_vehicule']; ?>.jpg">
                 <p>
-                    FORD FIESTA IV
+                    <?php echo $donnees['type_vehicule']; ?> </br>
+                    <?php echo $donnees['caract_vehicule']; ?>
                 </p>
-                <button class="button"><span><a href="">Voir l'annonce</a></span></button>
+           <?php
+
+                }
+                $sql->closeCursor();
+
+            ?>
             </div>
+            
         </div>
+    
+
     </div>
     
     <!-- Fin page -->
