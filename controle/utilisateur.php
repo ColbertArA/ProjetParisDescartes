@@ -3,26 +3,30 @@
 //Fonction permettant l'inscription d'un client ou d'une entreprise dans la base de données
 function insert () {
 
-    $choix = $_POST['choix'];
-    $nom = $_POST['nom'];
-    $mdp = $_POST['mdp'];
-    $mail = $_POST['mail'];
+    $choix = isset($_POST['choix'])?($_POST['choix']):'';
+    $nom = isset($_POST['nom'])?($_POST['nom']):'';
+    $mdp = isset($_POST['mdp'])?($_POST['mdp']):'';
+    $mail = isset($_POST['mail'])?($_POST['mail']):'';
     $c = sha1($mdp);
     $msg ='';
 
     require ("./modele/connect.php");
 
-    if ($choix = "loueur") {
-        // Pour inserer les données 
-        $req = $pdo->prepare('INSERT INTO client (nom_client, mdp_client, mail_client) VALUES(?,?,?)');
-    } else {
-        // Pour inserer les données
-        $req = $pdo->prepare('INSERT INTO entreprise (nom_entreprise, mdp_entreprise, mail_entreprise) VALUES(?,?,?)');
-    }
 
-    $req->execute(array($nom, $c, $mail));
-    $_SESSION['profil'] = $req;
-    
+    if (count($_POST) == 0){
+        require ('./vue/tpl/inscription.tpl');
+    } else {
+            if ($choix = "loueur") {
+            // Pour inserer les données 
+            $req = $pdo->prepare('INSERT INTO client (nom_client, mdp_client, mail_client) VALUES(?,?,?)');
+        } else {
+            // Pour inserer les données
+            $req = $pdo->prepare('INSERT INTO entreprise (nom_entreprise, mdp_entreprise, mail_entreprise) VALUES(?,?,?)');
+        }
+
+        $req->execute(array($nom, $c, $mail));
+        $_SESSION['profil'] = $req;
+    }
 }
 
 

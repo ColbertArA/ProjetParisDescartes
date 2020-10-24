@@ -18,8 +18,8 @@
     <header class="header">
         <ul>
             <li class="left-item"><a href="index.php?controle=button&action=gogo">GoGoVoiture</a></li>
-            <li><a href="index.php?controle=button&action=inscription">S'inscrire</a></li>
-            <li><a href="index.php?controle=button&action=connexion">Se connecter</a></li>
+            <li><a href="index.php?controle=utilisateur&action=insert">S'inscrire</a></li>
+            <li><a href="index.php?controle=utilisateur&action=ident">Se connecter</a></li>
         </ul>
     </header>
 
@@ -35,13 +35,13 @@
             Vous êtes un particulier ? Vous avez un véhicule que vous souhaitez le faire louer ?<br>
             GoGoVoiture est le site fait pour vous !
         </p>
-        <button class="buttonC"><span><a href="index.php?controle=button&action=inscription">S'incrire</a></span></button>
+        <button class="buttonC"><span><a href="index.php?controle=utilisateur&action=insert">S'incrire</a></span></button>
     </div>
 
     <div class="center-item">
         <h2>Louer un véhicule ou faites louer votre véhicule !</h2>
         <p class="client">Déjà client ? N'oublier pas de vous connecter !</p>
-        <button class="button"><span><a href="index.php?controle=button&action=connexion">Connectez-vous !</a></span></button>
+        <button class="button"><span><a href="index.php?controle=utilisateur&action=ident">Connectez-vous !</a></span></button>
     </div>
 
     <div class="container">
