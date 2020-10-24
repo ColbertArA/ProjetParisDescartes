@@ -47,6 +47,8 @@
     <div class="container">
         <div class="down-item">
             <div class="annonces" id="page">
+
+            <!-- Permet d'afficher toutes les vehicules présent dans la base de donnees -->
             <?php
 
                 require ('./modele/connect.php');
@@ -58,7 +60,7 @@
             ?>
 
                 <img src="./vue/photos_voitures/<?php echo $donnees['type_vehicule']; ?>.jpg">
-                <p>
+                <p class="vehicule">
                     Type véhicule : <?php echo $donnees['type_vehicule']; ?> </br>
                     Caractéristiques du véhicule : <?php echo $donnees['caract_vehicule']; ?>
                 </p>
@@ -66,6 +68,7 @@
             </div>
             <div class="annonces" id="page">
             <?php
+            
                 }
                 $sql->closeCursor();
 
