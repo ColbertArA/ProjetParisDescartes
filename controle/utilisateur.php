@@ -13,16 +13,15 @@ function insert () {
     require ("./modele/connect.php");
 
     if ($choix = "loueur") {
-
         // Pour inserer les données 
         $req = $pdo->prepare('INSERT INTO client (nom_client, mdp_client, mail_client) VALUES(?,?,?)');
-        $req->execute(array($nom, $c, $mail));
     } else {
-
         // Pour inserer les données
         $req = $pdo->prepare('INSERT INTO entreprise (nom_entreprise, mdp_entreprise, mail_entreprise) VALUES(?,?,?)');
-        $req->execute(array($nom, $c, $mail));
     }
+
+    $req->execute(array($nom, $c, $mail));
+    $_SESSION['profil'] = $req;
     
 }
 
@@ -42,12 +41,12 @@ function ident() {
     $donnees = $sql->fetch(PDO::FETCH_ASSOC);
     $_SESSION['profil'] = $donnees;
 
-    // if($donnees == 0) {
-    //     header ('Location: index.php?controle=button&action=err_connexion');
-    // } else {
+    if($donnees == 0) {
+        header ('Location: index.php?controle=button&action=err_connexion');
+    } else {
         
 
-    // }
+    }
     
 
     // if (count($_POST)==0){
