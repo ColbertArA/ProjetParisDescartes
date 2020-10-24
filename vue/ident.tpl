@@ -59,14 +59,13 @@
 
                 <img src="./vue/photos_voitures/<?php echo $donnees['type_vehicule']; ?>.jpg">
                 <p>
-                    <?php echo $donnees['type_vehicule']; ?> </br>
-                    <?php echo $donnees['caract_vehicule']; ?>
+                    Type véhicule : <?php echo $donnees['type_vehicule']; ?> </br>
+                    Caractéristiques du véhicule : <?php echo $donnees['caract_vehicule']; ?>
                 </p>
            
             </div>
             <div class="annonces" id="page">
             <?php
-
                 }
                 $sql->closeCursor();
 
