@@ -3,7 +3,8 @@
 function verif_ident($mail, $mdp, &$profil){
     require('connect.php');
 
-    $sql="SELECT * FROM 'client' where mail_client=:mail and mdp_client=:mdp";
+	$sql = $bdd->prepare('SELECT mail_client, mdp_client FROM client WHERE mail_client = ? AND mdp_client = ?');
+	$sql->execute(array($mail, $mdp));
     try{
         $commande = $pdo->prepare($sql);
 		$commande->bindParam(':mail', $mail);
@@ -23,5 +24,9 @@ function verif_ident($mail, $mdp, &$profil){
 	}
 }
 
+//fonction vérifiant si l'utilisateur est un loueur ou une entreprise
+function verif_id() {
+
+}
 
 ?>

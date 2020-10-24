@@ -45,6 +45,9 @@
             <p>
                 <input name="connexion" type="submit" value="Connexion" class="button"/>
             </p>
+            <p>
+                Mauvais mot de passe ou mail !
+            </p>
         </form>
     </div>
 

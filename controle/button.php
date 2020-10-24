@@ -5,7 +5,6 @@
 //lien pour les bouttons inscriptions
 function inscription() {
     require ("./vue/tpl/inscription.tpl");
-    
 }
 
 //lien pour les bouttons connexions
@@ -15,7 +14,11 @@ function connexion() {
 
 //lien pour les bouttons acceuils
 function gogo() {
-    require ("./vue/Ident.tpl");
+    require ("./vue/ident.tpl");
 }
 
+//lien vers la page connexion_err en cas de mauvais mot de passe ou mail
+function err_connexion() {
+    require ('./vue/tpl/connexion_err.tpl');
+}
 ?>

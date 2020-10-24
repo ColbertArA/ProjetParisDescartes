@@ -29,7 +29,6 @@
 
     <div class="formulaire" id="page">
         <h1>Formulaire d'inscription</h1>
-        <div> <?php echo $msg1; ?> </div>
         <form action="index.php?controle=utilisateur&action=insert" method="POST">
             <fieldset class="cadre">
                 <div class="info">

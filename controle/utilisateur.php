@@ -3,7 +3,11 @@
 //Fonction permettant l'inscription d'un client ou d'une entreprise dans la base de données
 function insert () {
 
-    $choix = isset($_POST['choix'])?($_POST['choix']):'';
+    $choix = $_POST['choix'];
+    $nom = $_POST['nom'];
+    $mdp = $_POST['mdp'];
+    $mail = $_POST['mail'];
+    $c = sha1($mdp);
     $msg ='';
 
     require ("./modele/connect.php");
@@ -12,51 +16,42 @@ function insert () {
 
         // Pour inserer les données 
         $req = $pdo->prepare('INSERT INTO client (nom_client, mdp_client, mail_client) VALUES(?,?,?)');
-        $req->execute(array($_POST['nom'], sha1($_POST['mdp']), $_POST['mail']));
-        $msg = "Inscription réussie !";
-
+        $req->execute(array($nom, $c, $mail));
     } else {
 
+        // Pour inserer les données
         $req = $pdo->prepare('INSERT INTO entreprise (nom_entreprise, mdp_entreprise, mail_entreprise) VALUES(?,?,?)');
-        $req->execute(array($_POST['nom'], sha1($_POST['mdp']), $_POST['mail']));
-        $msg = "Inscription réussie !";
-
+        $req->execute(array($nom, $c, $mail));
     }
-
-    $url = "index.php?controle=button&action=inscription";
-    header("Location:" . $url);
     
 }
 
+
+
 function ident() {
 
-    $mail = isset($_POST['mail'])?($_POST['mail']):'';
-    $mdp = isset($_POST['mdp'])?($_POST['mdp']):'';
+    $mail = $_POST['mail'];
+    $mdp = $_POST['mdp'];
+    $c = sha1($mdp);
     $msg = '';
 
-    require ("./modele/connect.php");
+    require ('./modele/connect.php');
 
-    // if(isset($mail) && isset($mdp)) {
-    //     $mail = htmlspecialchars($_POST['mail']);
-    //     $mdp = htmlspecialchars_decode($_POST['mdp']);
+    $sql = $pdo->prepare('SELECT * FROM client WHERE mdp_client = :mdp and mail_client = :mail');
+    $sql->execute(array('mdp' => $c, 'mail' => $mail));
+    $donnees = $sql->fetch(PDO::FETCH_ASSOC);
 
-    //     $check = $pdo->prepare('SELECT id_client, mail_client, mdp_client FROM client WHERE mail = ?');
-    //     $check->execute(array($mail));
-    //     $data = $check->fetch();
-    //     $row = $check->rowCount();
+    if($donnees == 0) {
+        header ('Location : index.php?controle=button&action=err_connexion');
+    } else {
 
-    //     if($row ==1) {
-    //         if(filter_var($mail, FILTER_VALIDATE_MAIL)) {
-    //             $mdp = hash('sha1', $mail);
-
-    //             if($data['mdp'] === $mdp){
-    //                 $_SESSION['profil'] = $data['id_client'];
-    //                 header('Location:index.php?controle=button&action=inscription');
-    //             } else header('Location:index.php?login_err=mdp');
-    //         } else header('Location:index.php?login_err=mail');
-    //     } else header('Location:index.php?login_err=already');
-    // } else header('Location:index.php?controle=utilisateur&action=accueil');
-
+    }
+    
+    // if($sql == $mail) {
+    //     echo'Mauvais mot de passe ou mail !';
+    // } else {
+    //     require ('./vue/ident.tpl');
+    // }
 
     // if (count($_POST)==0){
     //     require ("./vue/ident.tpl");
@@ -75,18 +70,23 @@ function ident() {
 }
 
 
+// function deconnection() {
+//     session_destroy();
+// }
 
-function accueil() {
-	if (isset($_SESSION['profil'])) {
-		//$profil = $_SESSION['profil'];
-		$mail = $_SESSION['profil']['mail'];
-		$mdp = $_SESSION['profil']['mdp'];
-		$idU = $_GET['idU'];
+
+
+// function accueil() {
+// 	if (isset($_SESSION['profil'])) {
+// 		//$profil = $_SESSION['profil'];
+// 		$mail = $_SESSION['profil']['mail'];
+// 		$mdp = $_SESSION['profil']['mdp'];
+// 		$idU = $_GET['idU'];
 		
-		require ('./vue/tpl/accueil.tpl');
-	}
-//	require ("./modele/m1.php");		
-//	require ("./vue/c1/a12.tpl"); //template de vue du service
-}
+// 		require ('./vue/tpl/accueil.tpl');
+// 	}
+// //	require ("./modele/m1.php");		
+// //	require ("./vue/c1/a12.tpl"); //template de vue du service
+// }
 
 ?>
