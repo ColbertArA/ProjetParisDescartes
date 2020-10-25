@@ -65,7 +65,11 @@
                 <input type="submit" value="S'inscrire" class="button" />
             </p>
         </form>
+        <div>
+            <?php echo $msg; ?> 
+        </div>
     </div>
+
 
     <!-- Fin page-->
 

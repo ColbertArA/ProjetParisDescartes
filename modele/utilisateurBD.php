@@ -6,22 +6,23 @@ function verif_ident() {
 }
 
 //fonction vérifiant s'il existe des doublons
-function verif_dbl($mail) {
+function verif_dbl($mail, $choix) {
 
 	require ('./modele/connect.php');
 
-	$req = $pdo->prepare('SELECT  mail_client FROM client WHERE mail = :mail');
-	$req->execute(array('nom' => $_POST['nom']));
+	if ($choix == 'loueur') {
+		$req = $pdo->prepare('SELECT mail_client FROM client WHERE mail_client = :mail');
+	} else {
+		$req = $pdo->prepare('SELECT mail_entreprise FROM entreprise WHERE mail_entreprise = :mail');
+	}
 
+	$req->execute(array('mail' => $mail));
 	$reponse = $req->fetch(PDO::FETCH_ASSOC);
-				 
-	// Vérification du nom et le num
+	
+	// Vérification si le mail est déjà utilisé
 	if($reponse == '1' || $reponse > '1'){
-					
-		echo "Le nom et le num sont déjà utilisés.";
 		return false;
 	} else {
-		echo "Vous êtes inscrit avec succès!";
 		return true;
 	}
 }
