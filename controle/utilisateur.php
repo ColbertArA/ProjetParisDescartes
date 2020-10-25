@@ -13,7 +13,6 @@ function insert () {
 
     require ("./modele/connect.php");
 
-
     if (count($_POST) == 0){
         require ('./vue/tpl/inscription.tpl');
     } else {
@@ -37,10 +36,8 @@ function insert () {
             $msg="Inscription réussie !";
             require ('./vue/tpl/inscription.tpl');
         }
-        
     }
 }
-
 
 //fonction permettant à la connexion des utilisateurs
 function ident() {
