@@ -57,13 +57,56 @@
             Vous êtes un particulier ? Vous avez un véhicule que vous souhaitez le faire louer ?<br>
             GoGoVoiture est le site fait pour vous !
         </p>
+
+        <?php
+
+        if (isset($_SESSION['profil']) AND $_SESSION['id'] == 'entreprise') {
+
+        } elseif (isset($_SESSION['profil']) AND $_SESSION['id'] == 'loueur') {
+
+        ?>
+
+        <button class="buttonC"><span><a href="index.php?controle=utilisateur&action=insert">Faire louer votre véhicule !</a></span></button>
+
+        <?php
+
+        } else {
+
+        ?>
+        
         <button class="buttonC"><span><a href="index.php?controle=utilisateur&action=insert">S'incrire</a></span></button>
+
+        <?php
+
+        }
+
+        ?>
     </div>
 
     <div class="center-item">
+
         <h2>Louer un véhicule ou faites louer votre véhicule !</h2>
+
+        <?php
+
+        if (isset($_SESSION['profil'])) {
+
+        ?>
+        
+        <?php
+
+        } else {
+
+        ?>
+
         <p class="client">Déjà client ? N'oublier pas de vous connecter !</p>
         <button class="button"><span><a href="index.php?controle=utilisateur&action=ident">Connectez-vous !</a></span></button>
+
+        <?php
+
+        }
+
+        ?>
     </div>
 
     <div class="container">
