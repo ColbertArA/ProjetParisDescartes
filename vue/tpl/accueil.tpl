@@ -52,7 +52,7 @@
         <p> <?php echo $msg; ?> </p>
         <?php
 
-        if (isset($_SESSION['nom'])) {
+        if (isset($_SESSION['profil'])) {
         
         ?>
 
