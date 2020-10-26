@@ -14,8 +14,8 @@ function publierAnnonce() {
         require ('./vue/tpl/annonce.tpl');
     } else {
         require ('./modele/vehiculeBD.php');
-        if (!preg_match('/^[0-9]*$/', $nbPlace)){
-            $msg='Format de nombres de places non respecté !';
+        if (!preg_match('/^[0-8]*$/', $nbPlace)){
+            $msg='Format de nombres de places non respecté ou dépassé !';
             require ('./vue/tpl/annonce.tpl');
         } elseif (!preg_match('/^[0-9]*$/', $prix)) {
             $msg='Format de prix non respecté !';
@@ -30,18 +30,17 @@ function publierAnnonce() {
     }
 }
 
-function louerVehicule()c{
+function louerVehicule(){
 
+    require ('./modele/vehiculeBD.php');
     $idU = $_GET['idU'];
+    $donnees = reqLocation($idU);
     $msg="";
-
-    if (count($_POST) == 0) {
+    
+    if (count($_POST) == 0){
         require ('./vue/tpl/vehicule.tpl');
-    } else {
-        require ('./modele/vehiculeBD.php');
-        $donnees = reqLocation($idU);
-        return $donnees;
-    }
+    } 
+   
 }
 
 ?>

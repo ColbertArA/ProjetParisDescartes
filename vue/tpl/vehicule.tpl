@@ -51,14 +51,27 @@
     <!-- Début page -->
     <div class="formulaire" id="page">
 
-        <?php
+    <?php
 
-        require ('./controle/vehicule.php');
+    $v = $donnees['caract_vehicule'];
+    $json = json_decode($v);
 
-        ?>
+    ?>
 
-        <img src"./vue/photos_voitures/<?php echo $donnees['photo_vehicule']; ?>.jpg">
 
+        <img src="./vue/photos_voitures/<?php echo $donnees['photo_vehicule']; ?>.jpg">
+        <p class="vehicule">
+            Type véhicule : <?php echo $donnees['type_vehicule']; ?></br>
+        </p>
+        <fieldset>
+            <legend>Caractéristiques du véhicule</legend>
+            <p class="vehicule">Moteur : <?php echo $json->{"moteur"}; ?></p>
+            <p class="vehicule">Boîte de vitesse : <?php echo $json->{"vitesse"}; ?></p>
+            <p class="vehicule">Nombres de places : <?php echo $json->{"nbPlace"}; ?></p>
+        </fieldset>
+        <p class="vehicule">
+            Prix : <?php echo $donnees['prix_vehicule']; ?> €/Jour
+        </p>
 
     </div>
 

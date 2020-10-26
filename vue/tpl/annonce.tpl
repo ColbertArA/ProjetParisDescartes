@@ -82,7 +82,7 @@
                     </p>
                     <p>
                         <label for="nbPlace">Nombres de places</label> :
-                        <input type="text" name="nbPlace" required>
+                        <input type="text" name="nbPlace" required placeholder="8 places max">
                     </p>
                     <p>
                         <label for="prix">Prix (en €/jour)</label> :

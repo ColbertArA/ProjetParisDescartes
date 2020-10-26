@@ -129,7 +129,6 @@
                     <img src="./vue/photos_voitures/<?php echo $donnees['photo_vehicule']; ?>.jpg">
                     <p class="vehicule">
                         Type véhicule : <?php echo $donnees['type_vehicule']; ?></br>
-
                     </p>
                     <fieldset>
                         <legend>Caractéristiques du véhicule</legend>
