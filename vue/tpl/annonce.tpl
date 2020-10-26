@@ -84,6 +84,10 @@
                         <label for="nbPlace">Nombres de places</label> :
                         <input type="text" name="nbPlace" required>
                     </p>
+                    <p>
+                        <label for="prix">Prix (en €/jour)</label> :
+                        <input type="text" name="prix" required>
+                    </p>
                 </div>
             </fieldset>
             <p>

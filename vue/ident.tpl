@@ -124,13 +124,14 @@
 
                 while ($donnees = $sql->fetch()) {
                     $v = $donnees['caract_vehicule'];
-                    $json = json_decode($v,true);
+                    $json = json_decode($v, true);
             ?>
 
                 <img src="./vue/photos_voitures/<?php echo $donnees['photo_vehicule']; ?>.jpg">
                 <p class="vehicule">
-                    Type véhicule : <?php echo $donnees['type_vehicule']; ?> </br>
-                    Caractéristiques du véhicule : <?php var_dump($json); ?>
+                    Type véhicule : <?php echo $donnees['type_vehicule']; ?></br>
+                    Caractéristiques du véhicule : <?php var_dump($json); ?></br>
+                    Prix : <?php echo $donnees['prix_vehicule']; ?> €/Jour
                     <?php
 
                     if (isset($_SESSION['profil']) AND $_SESSION['id'] == 'entreprise') {
@@ -150,7 +151,7 @@
                     }
 
                     ?>
-
+                    
                 </p>
            
             </div>

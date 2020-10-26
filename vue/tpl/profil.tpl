@@ -68,6 +68,16 @@
 
         ?>
 
+        <fieldset>
+            <legend>Vos services :</legend>
+            <form action="index.php?controle=vehicule&action=publierAnnonce" method="post"> 
+                <p>
+                    <input type="submit" value="Faites louer votre véhicule !" class="button"/>
+                </p>
+            </form>
+
+        </fieldset>
+
         <?php
 
             } elseif ($_SESSION['id'] == 'entreprise') {
