@@ -130,8 +130,10 @@
                 <img src="./vue/photos_voitures/<?php echo $donnees['photo_vehicule']; ?>.jpg">
                 <p class="vehicule">
                     Type véhicule : <?php echo $donnees['type_vehicule']; ?></br>
-                    Caractéristiques du véhicule : <?php var_dump($json); ?></br>
-                    Prix : <?php echo $donnees['prix_vehicule']; ?> €/Jour
+                    Prix : <?php echo $donnees['prix_vehicule']; ?> €/Jour</br>
+                    Caractéristiques du véhicule : <?php var_dump($json); ?>
+                    
+
                     <?php
 
                     if (isset($_SESSION['profil']) AND $_SESSION['id'] == 'entreprise') {
