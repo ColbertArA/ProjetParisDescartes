@@ -24,7 +24,7 @@ function insert () {
             $msg="Les mots de passe ne concordent pas !";
             require ('./vue/tpl/inscription.tpl');
         } else {
-            if ($choix = "loueur") {
+            if ($choix == "loueur") {
                 // Pour inserer les données 
                 $req = $pdo->prepare('INSERT INTO client (nom_client, mdp_client, mail_client) VALUES(?,?,?)');
                 $req->execute(array($nom, $c, $mail));
