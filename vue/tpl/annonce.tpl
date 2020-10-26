@@ -88,11 +88,14 @@
             <p>
                 <input name="publier" type="submit" value="Publier l'annonce" class="button"/>
             </p>
+
         </form>
 
         <?php
 
         }
+
+        echo $msg;
 
         ?>
 

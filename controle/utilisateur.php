@@ -1,9 +1,8 @@
 <?php
 
 //fonction permettant l'inscription d'un client ou d'une entreprise dans la base de données
-function insert () {
+function insert() {
 
-    require ("./modele/connect.php");
     require ('./modele/utilisateurBD.php');
 
     $choix = isset($_POST['choix'])?($_POST['choix']):'';
@@ -59,9 +58,8 @@ function ident() {
     $mdp = isset($_POST['mdp'])?($_POST['mdp']):'';
     $c = sha1($mdp);
     $donnees_entreprise = ident_entreprise($mail, $c);
+    $donnees_client = ident_client($mail, $c);
     $msg = "";
-
-    require ('./modele/connect.php');
 
     if (count($_POST) == 0) {
         require ('./vue/tpl/connexion.tpl');
@@ -73,7 +71,6 @@ function ident() {
             require ('./vue/tpl/connexion.tpl');
         //verifie s'il existe un client
         } elseif (ident_client($mail, $c) != 0) {
-            $donnees_client = ident_client($mail, $c);
             $choix = "loueur";
             $_SESSION['profil'] = $donnees_client;
             $_SESSION['nom'] = $donnees_client['nom_client'];
@@ -92,7 +89,7 @@ function ident() {
     }
 }
 
-//fonction permettant à l'utilisateur de se déconnecter
+//fonction permettant à un l'utilisateur de se déconnecter
 function deconnexion() {
     $msg="";
     session_destroy();
