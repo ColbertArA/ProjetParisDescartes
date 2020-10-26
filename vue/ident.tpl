@@ -18,8 +18,30 @@
     <header class="header">
         <ul>
             <li class="left-item"><a href="index.php?controle=button&action=gogo">GoGoVoiture</a></li>
+
+            <?php
+
+            if (isset($_SESSION['profil'])) {
+
+            ?>
+
+            <li><a href="index.php?controle=utilisateur&action=deconnexion">Se déconnecter</a></li>
+
+            <?php
+
+            } else {
+
+            ?>
+
             <li><a href="index.php?controle=utilisateur&action=insert">S'inscrire</a></li>
             <li><a href="index.php?controle=utilisateur&action=ident">Se connecter</a></li>
+
+            <?php
+
+            }
+
+            ?>
+
         </ul>
     </header>
 

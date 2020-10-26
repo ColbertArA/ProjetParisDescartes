@@ -1,6 +1,6 @@
 <?php
 
-//Fonction permettant l'inscription d'un client ou d'une entreprise dans la base de données
+//fonction permettant l'inscription d'un client ou d'une entreprise dans la base de données
 function insert () {
 
     $choix = isset($_POST['choix'])?($_POST['choix']):'';
@@ -27,14 +27,29 @@ function insert () {
             if ($choix = "loueur") {
                 // Pour inserer les données 
                 $req = $pdo->prepare('INSERT INTO client (nom_client, mdp_client, mail_client) VALUES(?,?,?)');
+                $req->execute(array($nom, $c, $mail));
+                $sql = $pdo->prepare('SELECT * FROM client WHERE mdp_client = :mdp and mail_client = :mail');
+                $sql->execute(array('mdp' => $c, 'mail' => $mail));
+                $donnees = $sql->fetch(PDO::FETCH_ASSOC);
+    
+                $_SESSION['profil'] = $donnees;
+                $_SESSION['nom'] = $donnees['nom_client'];
+                $_SESSION['id'] = $choix;
             } else {
                 // Pour inserer les données
                 $req = $pdo->prepare('INSERT INTO entreprise (nom_entreprise, mdp_entreprise, mail_entreprise) VALUES(?,?,?)');
+                $req->execute(array($nom, $c, $mail));
+                $sql = $pdo->prepare('SELECT * FROM entreprise WHERE mdp_entreprise = :mdp and mail_entreprise = :mail');
+                $sql->execute(array('mdp' => $c, 'mail' => $mail));
+                $donnees = $sql->fetch(PDO::FETCH_ASSOC);
+    
+                $_SESSION['profil'] = $donnees;
+                $_SESSION['nom'] = $donnees['nom_entreprise'];
+                $_SESSION['id'] = $choix;
             }
 
-            $req->execute(array($nom, $c, $mail));
             $msg="Inscription réussie !";
-            require ('./vue/tpl/inscription.tpl');
+            require ('./vue/tpl/accueil.tpl');
         }
     }
 }
@@ -60,52 +75,20 @@ function ident() {
             $msg='Mauvais mot de passe ou mail !';
             require ('./vue/tpl/connexion.tpl');
         } else {
+            $_SESSION['profil'] = $donnees;
             $_SESSION['nom'] = $donnees['nom_client'];
+            $msg='Vous êtes connecté !';
+            require ('./vue/tpl/accueil.tpl');
         }
     }
-
-
-    
-    
-
-    // if (count($_POST)==0){
-    //     require ("./vue/ident.tpl");
-    // } else {
-    //     require ("./modele/utilisateurBD.php");
-    //     if (!verif_ident($mail, $mdp, $profil)) {
-    //         $msg = "Utilisateur inconnu !" ;
-    //         require ("./vue/tpl/connexion.tpl");
-    //     } else {
-    //         //$_SESSION['profil'] = $profil;
-    //         //$idU = $_SESSION['profil']['id_client'];
-	// 		$url= "index.php?controle=utilisateur&action=accueil";
-	// 		header("Location:" . $url) ;
-    //     }
-    // }
 }
 
-// function accueil() {
-//     $mail = isset($_POST['mail'])?($_POST['mail']):'';
-//     $mdp = isset($_POST['mdp'])?($_POST['mdp']):'';
-//     $c = sha1($mdp);
-//     $msg = "";
-
-//     require ('./modele/connect.php');
-
-//     $sql = $pdo->prepare('SELECT * FROM client WHERE mdp_client = :mdp and mail_client = :mail');
-//     $sql->execute(array('mdp' => $c, 'mail' => $mail));
-//     $donnees = $sql->fetch(PDO::FETCH_ASSOC);
-
-// 	if (isset($_SESSION['profil'])) {
-// 		//$profil = $_SESSION['profil'];
-// 		$_SESSION['nom'] = $donnees['nom_client'];
-// 		$_SESSION['mail'] = $donnees['mail_client'];
-		
-		
-// 		require ('./vue/tpl/accueil.tpl');
-// 	}
-// //	require ("./modele/m1.php");		
-// //	require ("./vue/c1/a12.tpl"); //template de vue du service
-// }
+//fonction permettant à l'utilisateur de se déconnecter
+function deconnexion() {
+    $msg="";
+    session_destroy();
+    $msg = 'Vous êtes déconnecté !';
+    require ('./vue/tpl/deconnexion.tpl');
+}
 
 ?>
