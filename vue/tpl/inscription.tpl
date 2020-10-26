@@ -36,22 +36,18 @@
                     <p>
                         <label for="pseudo">Nom</label> :
                         <input type="text" name="nom" required placeholder="Julien Dupont">
-                        <span id="nom"></span>
                     </p>
                     <p>
                         <label for="mdp">Mot de passe</label> :
                         <input type="password" name="mdp" required>
-                        <span id="aideMdp"></span>
                     </p>
                     <p>
                         <label for="mdp"> Retapez votre mot de passe</label> :
                         <input type="password" name="mdp2" required>
-                        <span id="aideMdp"></span>
                     </p>
                     <p>
                         <label for="courriel">Mail</label> :
                         <input type="email" name="mail" required placeholder="utilisateur@mail.com">
-                        <span id="aideCourriel"></span>
                     </p>
                     <p>Qui êtes-vous ?<br><br>
                         <select name="choix">

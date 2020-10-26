@@ -66,7 +66,7 @@
 
         ?>
 
-        <button class="buttonC"><span><a href="index.php?controle=utilisateur&action=insert">Faire louer votre véhicule !</a></span></button>
+        <button class="buttonC"><span><a href="index.php?controle=vehicule&action=publierAnnonce">Faire louer votre véhicule !</a></span></button>
 
         <?php
 
