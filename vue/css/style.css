@@ -13,6 +13,10 @@ h1{
 	color: white;
 }
 
+h2{
+	font-size: 50px;
+}
+
 a{
 	text-decoration: none;
 	color: white;
@@ -183,6 +187,16 @@ h2{
 	max-width: 100%;
 	max-height: 100%;
 	display: inline-block;
+}
+
+legend{
+    font-size: 26px;
+    font-weight: 700;
+    font-family: "Raleway", sans-serif;
+}
+
+p{
+	font-family: "Raleway", sans-serif;
 }
 
 /* Fin page */

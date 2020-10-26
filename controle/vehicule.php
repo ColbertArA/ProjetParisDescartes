@@ -33,6 +33,8 @@ function publierAnnonce() {
 function louerVehicule(){
 
     $msg="";
+
+    
      
 }
 

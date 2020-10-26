@@ -25,8 +25,8 @@
 
             ?>
 
-            <li><a href="index.php?controle=utilisateur&action=profil">Profil</a></li>
-            <li><a href="index.php?controle=utilisateur&action=deconnexion">Se déconnecter</a></li>
+                <li><a href="index.php?controle=utilisateur&action=profil">Profil</a></li>
+                <li><a href="index.php?controle=utilisateur&action=deconnexion">Se déconnecter</a></li>
 
             <?php
 
@@ -34,8 +34,8 @@
 
             ?>
 
-            <li><a href="index.php?controle=utilisateur&action=insert">S'inscrire</a></li>
-            <li><a href="index.php?controle=utilisateur&action=ident">Se connecter</a></li>
+                <li><a href="index.php?controle=utilisateur&action=insert">S'inscrire</a></li>
+                <li><a href="index.php?controle=utilisateur&action=ident">Se connecter</a></li>
 
             <?php
 
@@ -61,21 +61,20 @@
 
         <?php
 
-        if (isset($_SESSION['profil']) AND $_SESSION['id'] == 'entreprise') {
-
-        } elseif (isset($_SESSION['profil']) AND $_SESSION['id'] == 'loueur') {
+        if (isset($_SESSION['profil']) and $_SESSION['id'] == 'entreprise') {
+        } elseif (isset($_SESSION['profil']) and $_SESSION['id'] == 'loueur') {
 
         ?>
 
-        <button class="buttonC"><span><a href="index.php?controle=vehicule&action=publierAnnonce">Faire louer votre véhicule !</a></span></button>
+            <button class="buttonC"><span><a href="index.php?controle=vehicule&action=publierAnnonce">Faire louer votre véhicule !</a></span></button>
 
         <?php
 
         } else {
 
         ?>
-        
-        <button class="buttonC"><span><a href="index.php?controle=utilisateur&action=insert">S'incrire</a></span></button>
+
+            <button class="buttonC"><span><a href="index.php?controle=utilisateur&action=insert">S'incrire</a></span></button>
 
         <?php
 
@@ -93,15 +92,15 @@
         if (isset($_SESSION['profil'])) {
 
         ?>
-        
+
         <?php
 
         } else {
 
         ?>
 
-        <p class="client">Déjà client ? N'oublier pas de vous connecter !</p>
-        <button class="button"><span><a href="index.php?controle=utilisateur&action=ident">Connectez-vous !</a></span></button>
+            <p class="client">Déjà client ? N'oublier pas de vous connecter !</p>
+            <button class="button"><span><a href="index.php?controle=utilisateur&action=ident">Connectez-vous !</a></span></button>
 
         <?php
 
@@ -114,62 +113,76 @@
         <div class="down-item">
             <div class="annonces" id="page">
 
-            <!-- Permet d'afficher toutes les vehicules présent dans la base de donnees -->
-            <?php
+                <!-- Permet d'afficher toutes les vehicules présent dans la base de donnees -->
+                <?php
 
-                require ('./modele/connect.php');
-            
+                require('./modele/connect.php');
+
                 //On recupere tout le contenu de la table vehicule
                 $sql = $pdo->query('SELECT * FROM vehicule');
 
                 while ($donnees = $sql->fetch()) {
                     $v = $donnees['caract_vehicule'];
-                    $json = json_decode($v, true);
-            ?>
+                    $json = json_decode($v);
+                ?>
 
-                <img src="./vue/photos_voitures/<?php echo $donnees['photo_vehicule']; ?>.jpg">
-                <p class="vehicule">
-                    Type véhicule : <?php echo $donnees['type_vehicule']; ?></br>
-                    Prix : <?php echo $donnees['prix_vehicule']; ?> €/Jour</br>
-                    Caractéristiques du véhicule : <?php var_dump($json); ?>
-                    
+                    <img src="./vue/photos_voitures/<?php echo $donnees['photo_vehicule']; ?>.jpg">
+                    <p class="vehicule">
+                        Type véhicule : <?php echo $donnees['type_vehicule']; ?></br>
+                        
+                    </p>
+                    <fieldset>
+                        <legend>Caractéristiques du véhicule</legend>
+                        <p class="vehicule">Moteur : <?php echo $json->{"moteur"}; ?></p>
+                        <p class="vehicule">Boîte de vitesse : <?php echo $json->{"vitesse"}; ?></p>
+                        <p class="vehicule">Nombres de places : <?php echo $json->{"nbPlace"}; ?></p>
+                    </fieldset>
+                    <p class="vehicule">
+                        Prix : <?php echo $donnees['prix_vehicule']; ?> €/Jour
+                    </p>
 
                     <?php
 
-                    if (isset($_SESSION['profil']) AND $_SESSION['id'] == 'entreprise') {
+                    if (isset($_SESSION['profil']) and $_SESSION['id'] == 'entreprise' and $donnees['location_vehicule'] == 'disponible') {
 
                     ?>
-                    
-                    <br><br><br>
 
-                    <form action="index.php?controle=vehicule&action="louerVehicule" method="post">
-                        <p>
-                            <input type="submit" value="Louer le véhicule !" class="button" />
-                        </p>
-                    </form>
+                        <br><br><br>
+
+                        <form action="index.php?controle=vehicule&action=" louerVehicule" method="post">
+                            <p>
+                                <input type="submit" value="Louer le véhicule !" class="button" />
+                            </p>
+                        </form>
+
+                    <?php
+
+                    } elseif ($donnees['location_vehicule'] == 'en_revision') {
+
+                    ?>
+
+                        <h2>Véhicule en révision</h2>
 
                     <?php
 
                     }
 
                     ?>
-                    
-                </p>
-           
+
             </div>
             <div class="annonces" id="page">
             <?php
-            
+
                 }
                 $sql->closeCursor();
 
             ?>
             </div>
         </div>
-    
+
 
     </div>
-    
+
     <!-- Fin page -->
 
 </body>
