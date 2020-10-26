@@ -85,6 +85,21 @@
                 <p class="vehicule">
                     Type véhicule : <?php echo $donnees['type_vehicule']; ?> </br>
                     Caractéristiques du véhicule : <?php echo $donnees['caract_vehicule']; ?>
+                    <?php
+
+                    if (isset($_SESSION['profil']) AND $_SESSION['id'] == 'entreprise') {
+
+                    ?>
+                    
+                    </br></br></br>
+                    <button class="button"><span><a href="index.php?controle=utilisateur&action=ident">Louez le véhicule !</a></span></button>
+
+                    <?php
+
+                    }
+
+                    ?>
+
                 </p>
            
             </div>
