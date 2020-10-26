@@ -52,18 +52,15 @@ function ident() {
     $sql = $pdo->prepare('SELECT * FROM client WHERE mdp_client = :mdp and mail_client = :mail');
     $sql->execute(array('mdp' => $c, 'mail' => $mail));
     $donnees = $sql->fetch(PDO::FETCH_ASSOC);
-    $_SESSION['profil'] = $donnees;
 
     if (count($_POST) == 0) {
         require ('./vue/tpl/connexion.tpl');
     } else {
-        if($donnees == 0) {
-            //header ('Location: index.php?controle=button&action=err_connexion');
-            $msg="Mot de passe ou mail incorrect !";
+        if ($donnees == 0) {
+            $msg='Mauvais mot de passe ou mail !';
             require ('./vue/tpl/connexion.tpl');
         } else {
-            $_SESSION['profil'] = $profil;
-    
+            $_SESSION['nom'] = $donnees['nom_client'];
         }
     }
 
@@ -87,19 +84,23 @@ function ident() {
     // }
 }
 
-
-function deconnection() {
-    session_destroy();
-}
-
-
-
 // function accueil() {
+//     $mail = isset($_POST['mail'])?($_POST['mail']):'';
+//     $mdp = isset($_POST['mdp'])?($_POST['mdp']):'';
+//     $c = sha1($mdp);
+//     $msg = "";
+
+//     require ('./modele/connect.php');
+
+//     $sql = $pdo->prepare('SELECT * FROM client WHERE mdp_client = :mdp and mail_client = :mail');
+//     $sql->execute(array('mdp' => $c, 'mail' => $mail));
+//     $donnees = $sql->fetch(PDO::FETCH_ASSOC);
+
 // 	if (isset($_SESSION['profil'])) {
 // 		//$profil = $_SESSION['profil'];
-// 		$mail = $_SESSION['profil']['mail'];
-// 		$mdp = $_SESSION['profil']['mdp'];
-// 		$idU = $_GET['idU'];
+// 		$_SESSION['nom'] = $donnees['nom_client'];
+// 		$_SESSION['mail'] = $donnees['mail_client'];
+		
 		
 // 		require ('./vue/tpl/accueil.tpl');
 // 	}
