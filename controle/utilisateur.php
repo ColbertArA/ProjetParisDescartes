@@ -64,19 +64,39 @@ function ident() {
 
     require ('./modele/connect.php');
 
-    $sql = $pdo->prepare('SELECT * FROM client WHERE mdp_client = :mdp and mail_client = :mail');
+    //données tirées de la table client
+    $sql = $pdo->prepare('SELECT * FROM client WHERE mdp_client = :mdp AND mail_client = :mail');
     $sql->execute(array('mdp' => $c, 'mail' => $mail));
-    $donnees = $sql->fetch(PDO::FETCH_ASSOC);
+    $donnees_client = $sql->fetch(PDO::FETCH_ASSOC);
+    $sql->closeCursor();
+
+    //données tirées de la table entreprise
+    $sql = $pdo->prepare('SELECT * FROM entreprise WHERE mdp_entreprise = :mdp AND mail_entreprise = :mail');
+    $sql->execute(array('mdp' => $c, 'mail' => $mail));
+    $donnees_entreprise = $sql->fetch(PDO::FETCH_ASSOC);
+    $sql->closeCursor();
 
     if (count($_POST) == 0) {
         require ('./vue/tpl/connexion.tpl');
     } else {
-        if ($donnees == 0) {
+        //verifie s'il un loueur ou une entreprise avec les identifiants entrés
+        if ($donnees_client == 0 && $donnees_entreprise == 0) {
             $msg='Mauvais mot de passe ou mail !';
             require ('./vue/tpl/connexion.tpl');
-        } else {
-            $_SESSION['profil'] = $donnees;
-            $_SESSION['nom'] = $donnees['nom_client'];
+        //verifie s'il existe un client
+        } elseif ($donnees_client != 0) {
+            $choix = "loueur";
+            $_SESSION['profil'] = $donnees_client;
+            $_SESSION['nom'] = $donnees_client['nom_client'];
+            $_SESSION['id'] = $choix;
+            $msg='Vous êtes connecté !';
+            require ('./vue/tpl/accueil.tpl');
+        //verifie s'il existe une entreprise
+        } elseif ($donnees_entreprise != 0) {
+            $choix = "entreprise";
+            $_SESSION['profil'] = $donnees_entreprise;
+            $_SESSION['nom'] = $donnees_entreprise['nom_entreprise'];
+            $_SESSION['id'] = $choix;
             $msg='Vous êtes connecté !';
             require ('./vue/tpl/accueil.tpl');
         }
