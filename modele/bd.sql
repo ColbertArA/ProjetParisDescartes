@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS vehicule(
     id_vehicule INT(11) NOT NULL AUTO_INCREMENT,
     type_vehicule TEXT NOT NULL,
     nb_vehicule INT NOT NULL,
-    caract_vehicule TEXT NOT NULL,
+    caract_v    ehicule TEXT NOT NULL,
     location_vehicule TEXT NOT NULL,
     photo_vehicule TEXT NOT NULL,
     PRIMARY KEY (id_vehicule)

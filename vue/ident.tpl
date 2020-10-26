@@ -127,18 +127,23 @@
                     $json = json_decode($v,true);
             ?>
 
-                <img src="./vue/photos_voitures/<?php echo $donnees['type_vehicule']; ?>.jpg">
+                <img src="./vue/photos_voitures/<?php echo $donnees['photo_vehicule']; ?>.jpg">
                 <p class="vehicule">
                     Type véhicule : <?php echo $donnees['type_vehicule']; ?> </br>
-                    Caractéristiques du véhicule : <?php echo var_dump($json); ?>
+                    Caractéristiques du véhicule : <?php var_dump($json); ?>
                     <?php
 
                     if (isset($_SESSION['profil']) AND $_SESSION['id'] == 'entreprise') {
 
                     ?>
                     
-                    </br></br></br>
-                    <button class="button"><span><a href="index.php?controle=utilisateur&action=ident">Louez le véhicule !</a></span></button>
+                    <br><br><br>
+
+                    <form action="index.php?controle=vehicule&action="louerVehicule" method="post">
+                        <p>
+                            <input type="submit" value="Louer le véhicule !" class="button" />
+                        </p>
+                    </form>
 
                     <?php
 
