@@ -116,7 +116,7 @@
                 <!-- Permet d'afficher toutes les vehicules présent dans la base de donnees -->
                 <?php
 
-                require('./modele/connect.php');
+                require ('./modele/connect.php');
 
                 //On recupere tout le contenu de la table vehicule
                 $sql = $pdo->query('SELECT * FROM vehicule');
@@ -129,7 +129,7 @@
                     <img src="./vue/photos_voitures/<?php echo $donnees['photo_vehicule']; ?>.jpg">
                     <p class="vehicule">
                         Type véhicule : <?php echo $donnees['type_vehicule']; ?></br>
-                        
+
                     </p>
                     <fieldset>
                         <legend>Caractéristiques du véhicule</legend>
@@ -143,28 +143,34 @@
 
                     <?php
 
-                    if (isset($_SESSION['profil']) and $_SESSION['id'] == 'entreprise' and $donnees['location_vehicule'] == 'disponible') {
-
+                    if (isset($_SESSION['profil']) and $_SESSION['id'] == 'entreprise') {
+                        if ($donnees['location_vehicule'] == 'disponible') {
+                            $idU = $donnees['id_vehicule'];
                     ?>
 
-                        <br><br><br>
+                            <br>
 
-                        <form action="index.php?controle=vehicule&action=" louerVehicule" method="post">
-                            <p>
-                                <input type="submit" value="Louer le véhicule !" class="button" />
-                            </p>
-                        </form>
+                            <button class="button"><span><a href="index.php?controle=vehicule&action=louerVehicule&idU=<?php echo $idU ?>">Louer le véhicule !</a></span></button>
+
+                        <?php
+
+                        } elseif ($donnees['location_vehicule'] == 'en_revision') {
+
+                        ?>
+
+                            <h2>Véhicule en révision</h2>
+
+                        <?php
+
+                        } elseif ($donnees['location_vehicule'] == 'en_cours') {
+
+                        ?>
+
+                            <h2>Véhicule en cours de location</h2>
 
                     <?php
 
-                    } elseif ($donnees['location_vehicule'] == 'en_revision') {
-
-                    ?>
-
-                        <h2>Véhicule en révision</h2>
-
-                    <?php
-
+                        }
                     }
 
                     ?>

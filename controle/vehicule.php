@@ -30,12 +30,18 @@ function publierAnnonce() {
     }
 }
 
-function louerVehicule(){
+function louerVehicule()c{
 
+    $idU = $_GET['idU'];
     $msg="";
 
-    
-     
+    if (count($_POST) == 0) {
+        require ('./vue/tpl/vehicule.tpl');
+    } else {
+        require ('./modele/vehiculeBD.php');
+        $donnees = reqLocation($idU);
+        return $donnees;
+    }
 }
 
 ?>

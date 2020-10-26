@@ -33,4 +33,14 @@ function stockVehicule($voiture){
 
 }
 
+function reqLocation($idU) {
+
+    require ('./modele/connect.php');
+
+    $sql = $pdo->prepare('SELECT * FROM vehicule WHERE id_vehicule = :idU');
+    $sql->execute(array('idU' => $idU));
+    $donnees = $sql->fetch(PDO::FETCH_ASSOC);
+    return $donnees;
+}
+
 ?>
