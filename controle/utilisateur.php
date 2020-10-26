@@ -31,6 +31,7 @@ function insert() {
 
                 $_SESSION['profil'] = $donnees_client;
                 $_SESSION['nom'] = $donnees_client['nom_client'];
+                $_SESSION['mail'] = $donnees_client['mail_client'];
                 $_SESSION['id'] = $choix;
             } else {
                 //insertion des données dans la base de données
@@ -40,6 +41,7 @@ function insert() {
     
                 $_SESSION['profil'] = $donnees_entreprise;
                 $_SESSION['nom'] = $donnees_entreprise['nom_entreprise'];
+                $_SESSION['mail'] = $donnees_entreprise['mail_entreprise'];
                 $_SESSION['id'] = $choix;
             }
 
@@ -74,6 +76,7 @@ function ident() {
             $choix = "loueur";
             $_SESSION['profil'] = $donnees_client;
             $_SESSION['nom'] = $donnees_client['nom_client'];
+            $_SESSION['mail'] = $donnees_client['mail_client'];
             $_SESSION['id'] = $choix;
             $msg='Vous êtes connecté !';
             require ('./vue/tpl/accueil.tpl');
@@ -82,10 +85,17 @@ function ident() {
             $choix = "entreprise";
             $_SESSION['profil'] = $donnees_entreprise;
             $_SESSION['nom'] = $donnees_entreprise['nom_entreprise'];
+            $_SESSION['mail'] = $donnees_entreprise['mail_entreprise'];
             $_SESSION['id'] = $choix;
             $msg='Vous êtes connecté !';
             require ('./vue/tpl/accueil.tpl');
         }
+    }
+}
+
+function profil(){
+    if (count($_POST) == 0){
+        require ('./vue/tpl/profil.tpl');
     }
 }
 

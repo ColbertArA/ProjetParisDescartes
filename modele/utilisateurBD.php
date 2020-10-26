@@ -1,4 +1,5 @@
 <?php
+//fichier php gérant les requêtes de la base de données pour les utilisateurs
 
 //fonction vérifiant s'il existe des doublons
 function verif_dbl($mail, $choix) {

@@ -50,27 +50,54 @@
 
     <!-- Début page -->
     <div class="formulaire" id="page">
-        <p> <?php echo $msg; ?> </p>
+
         <?php
 
         if (isset($_SESSION['profil'])) {
         
         ?>
 
-        <h1>Bienvenue M. <?php echo $_SESSION['nom']; ?> </h1>
-        <p>Vous êtes un/une <?php echo $_SESSION['id']; ?> </p>
+        <h1>Votre profil</h1>
+        <p>Votre nom :  <?php echo $_SESSION['nom']; ?> </p>
+        <p>Vous êtes un/une : <?php echo $_SESSION['id']; ?> </p>
+        <p>Votre mail : <?php echo $_SESSION['mail']; ?></p>
+
+        <?php
+
+            if ($_SESSION['id'] == 'loueur') {
+
+        ?>
+
+        <?php
+
+            } elseif ($_SESSION['id'] == 'entreprise') {
+ 
+        ?>
+
+        <fieldset>
+            <legend>Vos services :</legend>
+            <p>Vos véhicules loué(s) :</p>
+            <p>Affichage des véhicules libre à la location :</p>
+        </fieldset>
+
+        <?php
+
+            }
+
+        ?>
+
+        <form action="index.php?controle=utilisateur&action=deconnexion" method="post">
+            <p>
+                <input type="submit" value="Se déconnecter" class="button" />
+            </p>
+        </form>
 
         <?php
 
         }
 
         ?>
-
-        <form action="index.php?controle=button&action=gogo" method="post">
-            <p>
-                <input type="submit" value="Voir les annonces" class="button" />
-            </p>
-        </form>
+                
     </div>
 
 

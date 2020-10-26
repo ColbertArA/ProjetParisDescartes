@@ -25,6 +25,7 @@
 
             ?>
 
+            <li><a href="index.php?controle=utilisateur&action=profil">Profil</a></li>
             <li><a href="index.php?controle=utilisateur&action=deconnexion">Se déconnecter</a></li>
 
             <?php

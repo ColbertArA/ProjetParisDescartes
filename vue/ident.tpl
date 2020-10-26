@@ -25,6 +25,7 @@
 
             ?>
 
+            <li><a href="index.php?controle=utilisateur&action=profil">Profil</a></li>
             <li><a href="index.php?controle=utilisateur&action=deconnexion">Se déconnecter</a></li>
 
             <?php
@@ -122,12 +123,14 @@
                 $sql = $pdo->query('SELECT * FROM vehicule');
 
                 while ($donnees = $sql->fetch()) {
+                    $v = $donnees['caract_vehicule'];
+                    $json = json_decode($v,true);
             ?>
 
                 <img src="./vue/photos_voitures/<?php echo $donnees['type_vehicule']; ?>.jpg">
                 <p class="vehicule">
                     Type véhicule : <?php echo $donnees['type_vehicule']; ?> </br>
-                    Caractéristiques du véhicule : <?php echo $donnees['caract_vehicule']; ?>
+                    Caractéristiques du véhicule : <?php echo var_dump($json); ?>
                     <?php
 
                     if (isset($_SESSION['profil']) AND $_SESSION['id'] == 'entreprise') {

@@ -13,7 +13,14 @@ function publierAnnonce() {
     if (count($_POST) == 0){
         require ('./vue/tpl/annonce.tpl');
     } else {
-        
+        require ('./modele/vehiculeBD.php');
+
+        $v = array("moteur"=>$moteur, "vitesse"=>$vitesse, "nbPlace"=>$nbPlace);
+        $json=json_encode($v);
+        insert_vehicule($voiture, $json);
+        $msg='Annonce publiée avec succès !';
+        require ('./vue/tpl/annonce.tpl');
+
     }
 }
 
