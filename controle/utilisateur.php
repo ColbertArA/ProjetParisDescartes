@@ -32,6 +32,7 @@ function insert() {
                 $_SESSION['profil'] = $donnees_client;
                 $_SESSION['nom'] = $donnees_client['nom_client'];
                 $_SESSION['mail'] = $donnees_client['mail_client'];
+                $_SESSION['id_client'] = $donnees_client['id_client'];
                 $_SESSION['id'] = $choix;
             } else {
                 //insertion des données dans la base de données
@@ -42,6 +43,7 @@ function insert() {
                 $_SESSION['profil'] = $donnees_entreprise;
                 $_SESSION['nom'] = $donnees_entreprise['nom_entreprise'];
                 $_SESSION['mail'] = $donnees_entreprise['mail_entreprise'];
+                $_SESSION['id_entreprise'] = $donnees_client['id_entreprise'];
                 $_SESSION['id'] = $choix;
             }
 
@@ -87,6 +89,7 @@ function ident() {
             $_SESSION['profil'] = $donnees_entreprise;
             $_SESSION['nom'] = $donnees_entreprise['nom_entreprise'];
             $_SESSION['mail'] = $donnees_entreprise['mail_entreprise'];
+            $_SESSION['id_entreprise'] = $donnees_client['id_entreprise'];
             $_SESSION['id'] = $choix;
             $msg='Vous êtes connecté !';
             require ('./vue/tpl/accueil.tpl');

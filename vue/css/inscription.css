@@ -94,6 +94,10 @@ img{
     padding-left: 300px;
 }
 
+.date{
+    margin: 10px 10px 10px 10px;
+}
+
 /* Fin formulaire */
 
 @media only screen and (max-width: 1280px) {

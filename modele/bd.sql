@@ -30,8 +30,10 @@ CREATE TABLE IF NOT EXISTS facturation(
     id_facturation INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     id_vehicule INT NOT NULL,
     id_entreprise INT NOT NULL,
+    dateD_facturation DATE NOT NULL,
+    dateF_facturation DATE NOT NULL,
     valeur_facturation INT NOT NULL,
-    etat_faturation BOOLEAN NOT NULL
+    etat_faturation TEXT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE facturation
@@ -43,5 +45,5 @@ ADD ( CONSTRAINT FK_facturation_id_vehicule
 ALTER TABLE facturation
 ADD ( CONSTRAINT FK_facturation_id_entreprise
     FOREIGN KEY(id_entreprise)
-    REFERENCES vehicule(id_vehicule)
+    REFERENCES entreprise(id_entreprise)
 );

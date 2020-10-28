@@ -30,17 +30,29 @@ function publierAnnonce() {
     }
 }
 
-function louerVehicule(){
+// permet d'afficher un page du véhicule choisit par une entreprise
+function voirVehicule(){
 
     require ('./modele/vehiculeBD.php');
+    $dateD = isset($_POST['dateD'])?($_POST['dateD']):'';
+    $dateF = isset($_POST['dateF'])?($_POST['dateF']):'';
+    $paiement = isset($_POST['paiement'])?($_POST['paiement']):'';
     $idU = $_GET['idU'];
     $donnees = reqLocation($idU);
     $msg="";
     
     if (count($_POST) == 0){
         require ('./vue/tpl/vehicule.tpl');
-    } 
-   
+    } else {
+        require ('./controle/temps.php');
+        $prix = $donnees['prix_vehicule'];
+        $duree = jourTotal($dateD, $dateF);
+        $total = $prix * $duree;
+        louer_vehicule($idU, $dateD, $dateF, $total, $paiement);
+        $msg="Véhicule loué pour ". $total ."€";
+        require ('./vue/tpl/vehicule.tpl');
+    }
 }
+
 
 ?>

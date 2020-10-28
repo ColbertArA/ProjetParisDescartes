@@ -33,6 +33,7 @@ function stockVehicule($voiture){
 
 }
 
+//renvoie les données de la voiture que l'entreprise souhaite voir
 function reqLocation($idU) {
 
     require ('./modele/connect.php');
@@ -41,6 +42,14 @@ function reqLocation($idU) {
     $sql->execute(array('idU' => $idU));
     $donnees = $sql->fetch(PDO::FETCH_ASSOC);
     return $donnees;
+}
+
+function louer_vehicule($idU, $dateD, $dateF, $total, $paiement){
+
+    require ('./modele/connect.php');
+
+    $req = $pdo->prepare('INSERT INTO facturation (id_vehicule, id_entreprise, dateD_facturation, dateF_facturation, valeur_facturation, etat_facturation) VALUES (?,?,?,?,?,?)');
+    $req->execute(array($idU, $_SESSION['id_entreprise'], $dateD, $dateF, $total, $paiement));
 }
 
 ?>

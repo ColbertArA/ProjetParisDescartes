@@ -73,6 +73,27 @@
             Prix : <?php echo $donnees['prix_vehicule']; ?> €/Jour
         </p>
 
+        <?php $idU = $donnees['id_vehicule']; ?>
+
+        <form action="index.php?controle=vehicule&action=voirVehicule&idU=<?php echo $idU ?>" method="post">
+            <p class="vehicule">   
+                <label for="dateD">Date du début de la location</label> :
+                <input name="dateD" type="date" id="date" required>
+
+                <label for="dateF">Date de fin de la location</label> :
+                <input name="dateF" type="date" required>
+                <br><br>
+                Comment payez-vous ?<br><br>
+                    <select name="paiement">
+                        <option value="mtn">Maintenant</option>
+                        <option value="pls">En plusieurs fois</option>
+                    </select>
+                <br>
+                <input name="louer" type="submit" value="Louer le véhicule" class="button"/>
+            </p>
+        </form>
+        <?php echo $msg; ?>
+
     </div>
 
 

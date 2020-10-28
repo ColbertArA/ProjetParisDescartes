@@ -149,7 +149,7 @@
 
                             <br>
 
-                            <button class="button"><span><a href="index.php?controle=vehicule&action=louerVehicule&idU=<?php echo $idU ?>">Louer le véhicule !</a></span></button>
+                            <button class="button"><span><a href="index.php?controle=vehicule&action=voirVehicule&idU=<?php echo $idU ?>">Louer le véhicule !</a></span></button>
 
                         <?php
 
