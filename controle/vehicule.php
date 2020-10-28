@@ -36,7 +36,6 @@ function voirVehicule(){
     require ('./modele/vehiculeBD.php');
     $dateD = isset($_POST['dateD'])?($_POST['dateD']):'';
     $dateF = isset($_POST['dateF'])?($_POST['dateF']):'';
-    $paiement = isset($_POST['paiement'])?($_POST['paiement']):'';
     $idU = $_GET['idU'];
     $donnees = reqLocation($idU);
     $msg="";
@@ -47,12 +46,23 @@ function voirVehicule(){
         require ('./controle/temps.php');
         $prix = $donnees['prix_vehicule'];
         $duree = jourTotal($dateD, $dateF);
-        $total = $prix * $duree;
-        louer_vehicule($idU, $dateD, $dateF, $total, $paiement);
-        $msg="Véhicule loué pour ". $total ."€";
-        require ('./vue/tpl/vehicule.tpl');
+        if ($duree < 0 && $dateF != null) {
+            $msg="Location impossible car les dates ne correspondent pas !";
+            require ('./vue/tpl/vehicule.tpl');
+        } elseif ($dateF == 0) {
+            $mensualite = mensualite($prix);
+            $dateNull = null;
+            $paiement = "réglement_non_termine(mensualités)";
+            louer_vehicule($idU, $dateD, $dateNull, $mensualite, $paiement);
+            require ('./vue/ident.tpl');
+        } else {
+            $total = $prix * $duree;
+            $paiement = "réglement fait";
+            louer_vehicule($idU, $dateD, $dateF, $total, $paiement);
+            $msg="Véhicule loué pour ". $total ."€";
+            require ('./vue/tpl/vehicule.tpl');
+        }    
     }
 }
-
 
 ?>

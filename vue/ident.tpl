@@ -163,9 +163,13 @@
 
                         } elseif ($donnees['location_vehicule'] == 'en_cours') {
 
+                            $req = $pdo->query('SELECT * FROM facturation');
+                            $facturation = $req->fetch();
+
                         ?>
 
                             <h2>Véhicule en cours de location</h2>
+                            <p>Location du <?php echo $facturation['dateD_facturation']; ?> au <?php echo $facturation['dateF_facturation']; ?> </p>
 
                     <?php
 

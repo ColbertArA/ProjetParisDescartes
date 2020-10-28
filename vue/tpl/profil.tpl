@@ -87,7 +87,7 @@
         <fieldset>
             <legend>Vos services :</legend>
             <p>Vos véhicules loué(s) :</p>
-            <p>Affichage des véhicules libre à la location :</p>
+            <p>Affichage des véhicules libre à la location </p>
         </fieldset>
 
         <?php

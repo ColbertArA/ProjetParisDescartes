@@ -73,7 +73,13 @@
             Prix : <?php echo $donnees['prix_vehicule']; ?> €/Jour
         </p>
 
-        <?php $idU = $donnees['id_vehicule']; ?>
+        <?php 
+        
+        $idU = $donnees['id_vehicule'];
+
+        if ($donnees['location_vehicule'] == 'disponible') {
+        
+        ?>
 
         <form action="index.php?controle=vehicule&action=voirVehicule&idU=<?php echo $idU ?>" method="post">
             <p class="vehicule">   
@@ -81,18 +87,22 @@
                 <input name="dateD" type="date" id="date" required>
 
                 <label for="dateF">Date de fin de la location</label> :
-                <input name="dateF" type="date" required>
-                <br><br>
-                Comment payez-vous ?<br><br>
-                    <select name="paiement">
-                        <option value="mtn">Maintenant</option>
-                        <option value="pls">En plusieurs fois</option>
-                    </select>
+                <input name="dateF" type="date">
+                <br>
                 <br>
                 <input name="louer" type="submit" value="Louer le véhicule" class="button"/>
             </p>
         </form>
-        <?php echo $msg; ?>
+
+        <?php
+
+            echo $msg; 
+
+        } elseif ($donnees['location_vehicule'] == 'en_cours'){
+        
+        }
+
+        ?>
 
     </div>
 
