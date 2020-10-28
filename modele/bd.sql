@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS facturation(
     dateD_facturation DATE NOT NULL,
     dateF_facturation DATE NOT NULL,
     valeur_facturation INT NOT NULL,
-    etat_faturation TEXT NOT NULL
+    etat_facturation TEXT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE facturation

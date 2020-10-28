@@ -28,7 +28,7 @@ function insert() {
                 insert_client($nom, $c, $mail);
                 //recupération des données
                 $donnees_client = ident_client($mail, $c);
-
+;
                 $_SESSION['profil'] = $donnees_client;
                 $_SESSION['nom'] = $donnees_client['nom_client'];
                 $_SESSION['mail'] = $donnees_client['mail_client'];
@@ -39,11 +39,11 @@ function insert() {
                 insert_entreprise($nom, $c, $mail);
                 //recupération des données
                 $donnees_entreprise = ident_entreprise($mail, $c);
-    
+
                 $_SESSION['profil'] = $donnees_entreprise;
                 $_SESSION['nom'] = $donnees_entreprise['nom_entreprise'];
                 $_SESSION['mail'] = $donnees_entreprise['mail_entreprise'];
-                $_SESSION['id_entreprise'] = $donnees_client['id_entreprise'];
+                $_SESSION['id_entreprise'] = $donnees_entreprise['id_entreprise'];
                 $_SESSION['id'] = $choix;
             }
 
@@ -76,6 +76,7 @@ function ident() {
         //verifie s'il existe un client
         } elseif (ident_client($mail, $c) != 0) {
             $choix = "loueur";
+
             $_SESSION['profil'] = $donnees_client;
             $_SESSION['nom'] = $donnees_client['nom_client'];
             $_SESSION['mail'] = $donnees_client['mail_client'];
@@ -86,10 +87,11 @@ function ident() {
         //verifie s'il existe une entreprise
         } elseif ($donnees_entreprise != 0) {
             $choix = "entreprise";
+
             $_SESSION['profil'] = $donnees_entreprise;
             $_SESSION['nom'] = $donnees_entreprise['nom_entreprise'];
             $_SESSION['mail'] = $donnees_entreprise['mail_entreprise'];
-            $_SESSION['id_entreprise'] = $donnees_client['id_entreprise'];
+            $_SESSION['id_entreprise'] = $donnees_entreprise['id_entreprise'];
             $_SESSION['id'] = $choix;
             $msg='Vous êtes connecté !';
             require ('./vue/tpl/accueil.tpl');
@@ -106,6 +108,7 @@ function profil(){
 //fonction permettant à un l'utilisateur de se déconnecter
 function deconnexion() {
     $msg="";
+    $_SESSION = array();
     session_destroy();
     $msg = 'Vous êtes déconnecté !';
     require ('./vue/tpl/deconnexion.tpl');
