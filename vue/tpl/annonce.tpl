@@ -68,16 +68,16 @@
                     </p>
                     <p>Type de moteur :<br><br>
                         <select name="moteur">
-                            <option value="essence">Essence</option>
-                            <option value="diesel">Diesel</option>
-                            <option value="hybride">Hybride</option>
-                            <option value="electrique">Electrique</option>
+                            <option value="Essence">Essence</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Hybride">Hybride</option>
+                            <option value="Electrique">Electrique</option>
                         </select>
                     </p>
                     <p>Type de vitesse :<br><br>
                         <select name="vitesse">
-                            <option value="manuelle">Manuelle</option>
-                            <option value="automatique">Automatique</option>
+                            <option value="Manuelle">Manuelle</option>
+                            <option value="Automatique">Automatique</option>
                         </select>
                     </p>
                     <p>

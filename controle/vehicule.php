@@ -100,4 +100,18 @@ function vehiculeDisponible() {
     require ('./vue/tpl/profil.tpl');
 }
 
+//fonction qui permet de faire une réduction de 10% pour les entreprise qui ont une flotte de véhicules de 10 ou plus
+function reductionVehicule() {
+
+    require ('./modele/vehiculeBD.php');
+
+    $donnees = reduction_vehicule();
+    $nb = nb_entreprise();
+
+    for ($i = 0; $i <= $nb; $i++) {
+        $id = $donnees[$i];
+        remise_vehicule($id);
+    }
+}
+
 ?>

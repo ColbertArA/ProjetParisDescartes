@@ -139,6 +139,8 @@
                     $sql->closeCursor();
                 ?>
 
+                <p>
+
                 </fieldset>
 
             <?php

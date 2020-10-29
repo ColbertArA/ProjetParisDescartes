@@ -95,4 +95,48 @@ function vehicule_disponible($idU){
 
 }
 
+//fonction qui récupère dans la bdd les entreprises qui ont une flote de véhicule supérieure ou égale 10
+function reduction_vehicule(){
+
+    require ('./modele/connect.php');
+
+    $req = $pdo->prepare('SELECT * FROM entreprise');
+    $req->execute();
+    
+    while ($id = $req->fetch(PDO::FETCH_ASSOC)) {
+        $sql = $pdo->prepare('SELECT COUNT(*) AS nb FROM vehicule, entreprise WHERE location_vehicule = :id');
+        $sql->execute(array('id' => $id['id_entreprise']));
+        $donnees = $sql->fetch(PDO::FETCH_ASSOC);
+        $nb = $donnees['nb'];
+
+        if ($nb >= 10) {
+            $entreprise = array ($id['id_entreprise']);
+        }
+    }
+
+    return $entreprise;
+}
+
+//fonction qui retournele nombre total d'entreprise dans la bdd
+function nb_entreprise() {
+    
+    require ('./modele/connect.php');
+
+    $req = $pdo->prepare('SELECT COUNT(*) AS nb FROM entreprise');
+    $req->execute();
+    $nb = $sql->fetch();
+    $tt = $nb['nb'];
+
+    return $tt;
+}
+
+
+//fonction qui permet de mettre à jour la bdd et dentrer la réduction 
+function remise_vehicule($id) {
+
+    require ('./modele/connect.php');
+
+    
+}
+
 ?>
