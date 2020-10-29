@@ -59,4 +59,40 @@ function louer_vehicule($idU, $dateD, $dateF, $total, $paiement){
     
 }
 
+//permet de supprimer un vehicule de la bdd lorsqu'un loueur le souhaite
+function supprimer_vehicule($idU){
+
+    require ('./modele/connect.php');
+
+    $req = $pdo->prepare('DELETE FROM vehicule WHERE id_vehicule = :id_vehicule');
+    $req->bindParam(':id_vehicule', $idU);
+    $req->execute();
+
+}
+
+//met à jour la bdd lorsqu'un loueur met son véhicule en révision
+function modifier_vehicule($idU){
+
+    require ('./modele/connect.php');
+    $location = "en_revision";
+
+    $sql = $pdo->prepare('UPDATE vehicule SET location_vehicule = :location WHERE id_vehicule = :id_vehicule');
+    $sql->bindParam(':location', $location);
+    $sql->bindParam(':id_vehicule', $idU);
+    $sql->execute();
+}
+
+//met àjour la bdd lorsqu'un loueur met son véhicule à disposition de nouveau
+function vehicule_disponible($idU){
+
+    require ('./modele/connect.php');
+    $location = "disponible";
+    
+    $sql = $pdo->prepare('UPDATE vehicule SET location_vehicule = :location WHERE id_vehicule = :id_vehicule');
+    $sql->bindParam(':location', $location);
+    $sql->bindParam(':id_vehicule', $idU);
+    $sql->execute();
+
+}
+
 ?>

@@ -98,7 +98,12 @@
 
                             ?>
 
-                                disponible</p>
+                                disponible</p> 
+                                <form action="index.php?controle=vehicule&action=modifierVehicule&idU=<?php echo $vehicule['id_vehicule'] ?>" method="post">
+                                    <p>
+                                        <input type="submit" value="Modifier" class="button" />
+                                    </p>
+                                </form>
 
                     <?php
 
@@ -107,6 +112,11 @@
                     ?>
 
                         en révision</p>
+                        <form action="index.php?controle=vehicule&action=modifierVehicule&idU=<?php echo $vehicule['id_vehicule'] ?>" method="post">
+                            <p>
+                                <input type="submit" value="Modifier" class="button" />
+                            </p>
+                        </form>
 
                     <?php
 
@@ -124,7 +134,6 @@
 
                             }
 
-                            $req->closeCursor();
                         }
 
                     $sql->closeCursor();
