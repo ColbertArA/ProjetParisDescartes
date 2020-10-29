@@ -47,14 +47,13 @@ function reqLocation($idU) {
 // insert dans la bdd une facturation de la location d'un véhicule part une entreprise
 function louer_vehicule($idU, $dateD, $dateF, $total, $paiement){
 
-    $locationVehicule = "en_cours";
     require ('./modele/connect.php');
 
     $req = $pdo->prepare('INSERT INTO facturation (id_vehicule, id_entreprise, dateD_facturation, dateF_facturation, valeur_facturation, etat_facturation) VALUES (?,?,?,?,?,?)');
     $req->execute(array($idU, $_SESSION['id_entreprise'], $dateD, $dateF, $total, $paiement));
 
     $sql = $pdo->prepare('UPDATE vehicule SET location_vehicule = :location WHERE id_vehicule = :id_vehicule');
-    $sql->bindParam(':location', $locationVehicule);
+    $sql->bindParam(':location', $_SESSION['id_entreprise']);
     $sql->bindParam(':id_vehicule', $idU);
     $sql->execute();
     

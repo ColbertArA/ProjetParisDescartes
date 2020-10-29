@@ -161,7 +161,7 @@
 
                         <?php
 
-                        } elseif ($donnees['location_vehicule'] == 'en_cours') {
+                        } elseif ($donnees['location_vehicule'] == $_SESSION['id_entreprise']) {
 
                             $req = $pdo->query('SELECT * FROM facturation');
                             $facturation = $req->fetch();
@@ -174,6 +174,8 @@
                     <?php
 
                         }
+
+                        $req->closeCursor();
                     }
 
                     ?>

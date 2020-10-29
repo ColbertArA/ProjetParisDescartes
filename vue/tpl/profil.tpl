@@ -77,23 +77,62 @@
                             <input type="submit" value="Faites louer votre véhicule !" class="button" />
                         </p>
                     </form>
+                    <p>Voiture(s) en stock :</p>
 
-            <?php
+                    <?php
 
-            $sql = $pdo->prepare('SELECT * FROM vehicule WHERE id_client = :id');
-            $sql->execute(array('id' => $_SESSION['id_client']));
+                    $sql = $pdo->prepare('SELECT *
+                    FROM vehicule
+                    WHERE id_client = :id');
+                    $sql->execute(array('id' => $_SESSION['id_client']));
 
-            while ($vehicule = $sql->fetch()) {
-             
-            ?>
+                    while ($vehicule = $sql->fetch()) {
 
-            
+                    ?>
+
+                        <p>- <?php echo $vehicule['type_vehicule']; ?>
+
+                            <?php
+
+                            if ($vehicule['location_vehicule'] == 'disponible') {
+
+                            ?>
+
+                                disponible</p>
+
+                    <?php
+
+                            } elseif ($vehicule['location_vehicule'] == 'en_revision') {
+
+                    ?>
+
+                        en révision</p>
+
+                    <?php
+
+                            } else {
+
+                            $req = $pdo->prepare('SELECT * FROM entreprise WHERE id_entreprise = :id');
+                            $req->execute(array('id' => $vehicule['location_vehicule']));
+                            $entreprise = $req->fetch();
+
+                    ?>
+
+                        loué par <?php echo $entreprise['nom_entreprise']; ?></p>
+
+                <?php
+
+                            }
+
+                            $req->closeCursor();
+                        }
+
+                    $sql->closeCursor();
+                ?>
 
                 </fieldset>
 
             <?php
-
-            }
 
             } elseif ($_SESSION['id'] == 'entreprise') {
 
@@ -192,6 +231,7 @@
                                 }
                             }
                         }
+                    $req->closeCursor();
 
                 ?>
 
