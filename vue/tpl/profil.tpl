@@ -25,8 +25,8 @@
 
             ?>
 
-            <li><a href="index.php?controle=utilisateur&action=profil">Profil</a></li>
-            <li><a href="index.php?controle=utilisateur&action=deconnexion">Se déconnecter</a></li>
+                <li><a href="index.php?controle=utilisateur&action=profil">Profil</a></li>
+                <li><a href="index.php?controle=utilisateur&action=deconnexion">Se déconnecter</a></li>
 
             <?php
 
@@ -34,8 +34,8 @@
 
             ?>
 
-            <li><a href="index.php?controle=utilisateur&action=insert">S'inscrire</a></li>
-            <li><a href="index.php?controle=utilisateur&action=ident">Se connecter</a></li>
+                <li><a href="index.php?controle=utilisateur&action=insert">S'inscrire</a></li>
+                <li><a href="index.php?controle=utilisateur&action=ident">Se connecter</a></li>
 
             <?php
 
@@ -54,60 +54,107 @@
         <?php
 
         if (isset($_SESSION['profil'])) {
-        
+
         ?>
 
-        <h1>Votre profil</h1>
-        <p>Votre nom :  <?php echo $_SESSION['nom']; ?> </p>
-        <p>Vous êtes un/une : <?php echo $_SESSION['id']; ?> </p>
-        <p>Votre mail : <?php echo $_SESSION['mail']; ?></p>
+            <h1>Votre profil</h1>
+            <p>Votre nom : <?php echo $_SESSION['nom']; ?> </p>
+            <p>Vous êtes un/une : <?php echo $_SESSION['id']; ?> </p>
+            <p>Votre mail : <?php echo $_SESSION['mail']; ?></p>
 
-        <?php
+            <?php
 
             if ($_SESSION['id'] == 'loueur') {
 
-        ?>
+            ?>
 
-        <fieldset>
-            <legend>Vos services :</legend>
-            <form action="index.php?controle=vehicule&action=publierAnnonce" method="post"> 
-                <p>
-                    <input type="submit" value="Faites louer votre véhicule !" class="button"/>
-                </p>
-            </form>
+                <fieldset>
+                    <legend>Vos services :</legend>
+                    <form action="index.php?controle=vehicule&action=publierAnnonce" method="post">
+                        <p>
+                            <input type="submit" value="Faites louer votre véhicule !" class="button" />
+                        </p>
+                    </form>
 
-        </fieldset>
+                </fieldset>
 
-        <?php
+            <?php
 
             } elseif ($_SESSION['id'] == 'entreprise') {
- 
-        ?>
 
-        <fieldset>
-            <legend>Vos services :</legend>
-            <p>Vos véhicules loué(s) :</p>
-            <p>Affichage des véhicules libre à la location </p>
-        </fieldset>
+            ?>
 
-        <?php
+                <fieldset>
+                    <legend>Vos services :</legend>
+                    <p>Vos véhicules loué(s) :</p>
+
+                    <?php
+
+                    require('./modele/connect.php');
+
+                    $req = $pdo->prepare('SELECT vehicule.type_vehicule, facturation.valeur_facturation, facturation.etat_facturation
+            FROM vehicule, facturation 
+            WHERE facturation.id_entreprise = :id AND vehicule.id_vehicule = facturation.id_vehicule');
+
+                    $req->execute(array('id' => $_SESSION['id_entreprise']));
+
+                    while ($facturation = $req->fetch()) {
+
+                    ?>
+
+                        <p>- Type de véhicule : <?php echo $facturation['type_vehicule']; ?></p>
+
+                        <?php
+
+                        if ($facturation['etat_facturation'] == 'réglement fait') {
+
+                        ?>
+
+                            <p>- Prix payé (le véhicule est entièrement réglé) : <?php echo $facturation['valeur_facturation']; ?></p>
+
+                        <?php
+
+                        } elseif ($facturation['etat_facturation'] == 'réglement_non_termine(mensualités)') {
+
+                        ?>
+
+                            <p>- Prix payé en mensualité : <?php echo $facturation['valeur_facturation']; ?></p>
+
+                    <?php
+
+                        }
+                    }
+
+                    ?>
+
+                    <br>
+                    <p>Affichage des véhicules libre à la location :</p><br>
+
+                    <form action="index.php?controle=button&action=gogo" method="post">
+                        <p>
+                            <input type="submit" value="Voir" class="button" />
+                        </p>
+                    </form>
+                </fieldset>
+
+            <?php
 
             }
 
-        ?>
+            ?>
 
-        <form action="index.php?controle=utilisateur&action=deconnexion" method="post">
-            <p>
-                <input type="submit" value="Se déconnecter" class="button" />
-            </p>
-        </form>
+            <form action="index.php?controle=utilisateur&action=deconnexion" method="post">
+                <p>
+                    <input type="submit" value="Se déconnecter" class="button" />
+                </p>
+            </form>
 
         <?php
 
         }
 
         ?>
-                
+
     </div>
 
 
