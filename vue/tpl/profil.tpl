@@ -53,6 +53,8 @@
 
         <?php
 
+        require('./modele/connect.php');
+
         if (isset($_SESSION['profil'])) {
 
         ?>
@@ -76,9 +78,22 @@
                         </p>
                     </form>
 
+            <?php
+
+            $sql = $pdo->prepare('SELECT * FROM vehicule WHERE id_client = :id');
+            $sql->execute(array('id' => $_SESSION['id_client']));
+
+            while ($vehicule = $sql->fetch()) {
+             
+            ?>
+
+            
+
                 </fieldset>
 
             <?php
+
+            }
 
             } elseif ($_SESSION['id'] == 'entreprise') {
 
@@ -86,13 +101,11 @@
 
                 <fieldset>
                     <legend>Vos services :</legend>
-                    <p>Vos véhicules loué(s) :</p>
+                    <p>Vos véhicules loué(s) :</p><br>
 
                     <?php
 
-                    require('./modele/connect.php');
-
-                    $req = $pdo->prepare('SELECT vehicule.type_vehicule, vehicule.prix_vehicule, facturation.dateD_facturation, facturation.valeur_facturation, facturation.etat_facturation
+                    $req = $pdo->prepare('SELECT vehicule.type_vehicule, vehicule.prix_vehicule, facturation.dateD_facturation, facturation.dateF_facturation, facturation.valeur_facturation, facturation.etat_facturation
             FROM vehicule, facturation 
             WHERE facturation.id_entreprise = :id AND vehicule.id_vehicule = facturation.id_vehicule');
 
@@ -111,6 +124,8 @@
                         ?>
 
                             <p>- Prix payé (le véhicule est entièrement réglé) : <?php echo $facturation['valeur_facturation']; ?> €</p>
+                            <p>- Date de début de la location : <?php echo $facturation['dateD_facturation']; ?> </p>
+                            <p>- Date de fin de la location : <?php echo $facturation['dateF_facturation']; ?> </p><br><br>
 
                         <?php
 
@@ -118,6 +133,7 @@
 
                         ?>
 
+                            <p>- Date de début de la location : <?php echo $facturation['dateD_facturation']; ?> </p>
                             <p>- Prix payé en mensualité pour le mois courant : <?php echo $facturation['valeur_facturation']; ?> €</p>
                             <p>A payé pour le mois suivant :
 
@@ -136,7 +152,7 @@
                                     echo $facturation['prix_vehicule'] * 31;
                                 ?>
 
-                                    €</p>
+                                    €</p><br><br>
 
                         <?php
 
@@ -146,7 +162,7 @@
 
                         ?>
 
-                            €</p>
+                            €</p><br><br>
 
                             <?php
                                 } elseif ($mois == 2) {
@@ -158,7 +174,7 @@
 
                             ?>
 
-                                €</p>
+                                €</p><br><br>
 
 
                             <?php
@@ -169,7 +185,7 @@
 
                             ?>
 
-                                €</p>
+                                €</p><br><br>
 
                 <?php
                                     }
@@ -202,7 +218,6 @@
             </form>
 
         <?php
-
 
         }
 
