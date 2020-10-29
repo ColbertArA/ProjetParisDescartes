@@ -92,7 +92,7 @@
 
                     require('./modele/connect.php');
 
-                    $req = $pdo->prepare('SELECT vehicule.type_vehicule, facturation.valeur_facturation, facturation.etat_facturation
+                    $req = $pdo->prepare('SELECT vehicule.type_vehicule, vehicule.prix_vehicule, facturation.dateD_facturation, facturation.valeur_facturation, facturation.etat_facturation
             FROM vehicule, facturation 
             WHERE facturation.id_entreprise = :id AND vehicule.id_vehicule = facturation.id_vehicule');
 
@@ -102,7 +102,7 @@
 
                     ?>
 
-                        <p>- Type de véhicule : <?php echo $facturation['type_vehicule']; ?></p>
+                        <p> Type de véhicule : <?php echo $facturation['type_vehicule']; ?></p>
 
                         <?php
 
@@ -110,7 +110,7 @@
 
                         ?>
 
-                            <p>- Prix payé (le véhicule est entièrement réglé) : <?php echo $facturation['valeur_facturation']; ?></p>
+                            <p>- Prix payé (le véhicule est entièrement réglé) : <?php echo $facturation['valeur_facturation']; ?> €</p>
 
                         <?php
 
@@ -118,23 +118,75 @@
 
                         ?>
 
-                            <p>- Prix payé en mensualité : <?php echo $facturation['valeur_facturation']; ?></p>
+                            <p>- Prix payé en mensualité pour le mois courant : <?php echo $facturation['valeur_facturation']; ?> €</p>
+                            <p>A payé pour le mois suivant :
 
-                    <?php
+                                <?php
 
+                                $date = $facturation['dateD_facturation'];
+                                list($annee, $mois, $jour) = explode('-', $date);
+                                $mois = $mois + 1;
+
+                                if ($mois >= 13) {
+                                    $mois = 1;
+                                }
+
+                                if ($mois == 1 || $mois == 3 || $mois == 5 || $mois == 7 || $mois == 8 || $mois == 10 || $mois == 12) {
+
+                                    echo $facturation['prix_vehicule'] * 31;
+                                ?>
+
+                                    €</p>
+
+                        <?php
+
+                                } elseif ($mois == 4 || $mois == 6 || $mois == 9 || $mois == 11) {
+
+                                    echo $facturation['prix_vehicule'] * 30;
+
+                        ?>
+
+                            €</p>
+
+                            <?php
+                                } elseif ($mois == 2) {
+
+                                    require('./controle/temps.php');
+                                    if (estBissextile($annee) == 1) {
+
+                                        echo $facturation['prix_vehicule'] * 29;
+
+                            ?>
+
+                                €</p>
+
+
+                            <?php
+
+                                    } elseif (estBissextile($annee) == 0) {
+
+                                        echo $facturation['prix_vehicule'] * 28;
+
+                            ?>
+
+                                €</p>
+
+                <?php
+                                    }
+                                }
+                            }
                         }
-                    }
 
-                    ?>
+                ?>
 
-                    <br>
-                    <p>Affichage des véhicules libre à la location :</p><br>
+                <br>
+                <p>Affichage des véhicules libre à la location :</p><br>
 
-                    <form action="index.php?controle=button&action=gogo" method="post">
-                        <p>
-                            <input type="submit" value="Voir" class="button" />
-                        </p>
-                    </form>
+                <form action="index.php?controle=button&action=gogo" method="post">
+                    <p>
+                        <input type="submit" value="Voir" class="button" />
+                    </p>
+                </form>
                 </fieldset>
 
             <?php
@@ -151,12 +203,12 @@
 
         <?php
 
+
         }
 
         ?>
 
     </div>
-
 
     <!-- Fin page -->
 </body>

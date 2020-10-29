@@ -50,7 +50,7 @@ function voirVehicule(){
             $msg="Location impossible car les dates ne correspondent pas !";
             require ('./vue/tpl/vehicule.tpl');
         } elseif ($dateF == 0) {
-            $mensualite = mensualite($prix);
+            $mensualite = $prix * mensualite($prix, $dateD);
             $dateNull = null;
             $paiement = "réglement_non_termine(mensualités)";
             louer_vehicule($idU, $dateD, $dateNull, $mensualite, $paiement);
@@ -59,8 +59,7 @@ function voirVehicule(){
             $total = $prix * $duree;
             $paiement = "réglement fait";
             louer_vehicule($idU, $dateD, $dateF, $total, $paiement);
-            $msg="Véhicule loué pour ". $total ."€";
-            require ('./vue/tpl/vehicule.tpl');
+            require ('./vue/ident.tpl');
         }    
     }
 }

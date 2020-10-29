@@ -55,7 +55,7 @@
         <p class="bienvenue">
             Bienvenue sur GoGoVoiture, le site pour louer votre véhicule !<br>
             Vous êtes une entreprise et vous avez besoin de louer un véhicule rapidement et facilement ?<br>
-            Vous êtes un particulier ? Vous avez un véhicule que vous souhaitez le faire louer ?<br>
+            Vous êtes un particulier ? Vous avez un véhicule et vous souhaitez le faire louer ?<br>
             GoGoVoiture est le site fait pour vous !
         </p>
 
