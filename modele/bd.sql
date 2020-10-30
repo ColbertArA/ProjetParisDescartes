@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS facturation(
     id_vehicule INT NOT NULL,
     id_entreprise INT NOT NULL,
     dateD_facturation DATE NOT NULL,
-    dateF_facturation DATE NOT NULL,
+    dateF_facturation DATE,
     valeur_facturation INT NOT NULL,
     etat_facturation TEXT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

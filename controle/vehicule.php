@@ -56,11 +56,13 @@ function voirVehicule()
             $dateNull = null;
             $paiement = "réglement_non_termine(mensualités)";
             louer_vehicule($idU, $dateD, $dateNull, $mensualite, $paiement);
+            reductionVehicule();
             require('./vue/ident.tpl');
         } else {
             $total = $prix * $duree;
             $paiement = "réglement fait";
             louer_vehicule($idU, $dateD, $dateF, $total, $paiement);
+            reductionVehicule();
             require('./vue/ident.tpl');
         }
     }
@@ -103,15 +105,33 @@ function vehiculeDisponible() {
 //fonction qui permet de faire une réduction de 10% pour les entreprise qui ont une flotte de véhicules de 10 ou plus
 function reductionVehicule() {
 
-    require ('./modele/vehiculeBD.php');
 
-    $donnees = reduction_vehicule();
-    $nb = nb_entreprise();
 
-    for ($i = 0; $i <= $nb; $i++) {
-        $id = $donnees[$i];
-        remise_vehicule($id);
+    if (nb_vehicule($_SESSION['id_entreprise']) >= 10) {
+
+        $donnees = reduction_vehicule();
+        $nb = nb_entreprise();
+
+        for ($i = 0; $i <= $nb; $i++) {
+            $id = $donnees[$i];
+            $prix = prix($id);
+            $reduction = reductionPrix($prix, $id);
+            remise_vehicule($id, $reduction);
+        }
     }
+}
+
+function reductionPrix($prix, $id) {
+
+    $remise = 10;
+    
+    //reduction à appliquer
+    $pourcentage = ($prix * $remise) / 100;
+    //prix après réduction
+    $prixF = $prix - $pourcentage;
+
+
+    remise_vehicule($prixF, $id);
 }
 
 ?>

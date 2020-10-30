@@ -117,14 +117,26 @@ function reduction_vehicule(){
     return $entreprise;
 }
 
-//fonction qui retournele nombre total d'entreprise dans la bdd
+//fonction qui retourne le nombre de véhicule louer par une entreprise
+function nb_vehicule($idE){
+    require ('./modele/connect.php');
+
+    $req = $pdo->prepare('SELECT COUNT(*) AS nb FROM vehiule WHERE location_vehicule =:id');
+    $req->execute((array('id' => $idE)));
+    $donnees = $req->fetch();
+    $nb = $donnees['nb'];
+
+    return $nb;
+}
+
+//fonction qui retourne le nombre total d'entreprise dans la bdd
 function nb_entreprise() {
     
     require ('./modele/connect.php');
 
     $req = $pdo->prepare('SELECT COUNT(*) AS nb FROM entreprise');
     $req->execute();
-    $nb = $sql->fetch();
+    $nb = $req->fetch();
     $tt = $nb['nb'];
 
     return $tt;
@@ -132,11 +144,30 @@ function nb_entreprise() {
 
 
 //fonction qui permet de mettre à jour la bdd et dentrer la réduction 
-function remise_vehicule($id) {
+function remise_vehicule($prixF, $id) {
 
     require ('./modele/connect.php');
 
-    
+    $req = $pdo->prepare('UPDATE facturation SET valeur_facturation = :prix WHERE id_entreprise = :id');
+    $req->bindParam('prix', $prixF);
+    $req->bindParam('id', $id);
+    $req->execute();
+
+
+}
+
+function prix($id) {
+
+    require ('./modele/connect.php');
+
+    $req = $pdo->prepare('SELECT valeur_facturation FROM facturation WHERE id_entreprise = :id');
+    $req->execute(array('id' => $id));
+    $prix = $req ->fetch();
+    $donnees = $prix['valeur_facturation'];
+    $req->closeCursor();
+
+
+    return $donnees;
 }
 
 ?>
