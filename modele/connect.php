@@ -3,7 +3,7 @@
 // Ce fichier permet de se connecter à la base de donnée
 
 $hostname = "localhost"; // vs-wamp
-$base = "bd";
+$base = "gogovoitureBdd";
 $loginBD = "root";
 $passBD = "";
 

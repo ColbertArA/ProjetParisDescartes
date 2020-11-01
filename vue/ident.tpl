@@ -128,13 +128,15 @@
 
                     <img src="./vue/photos_voitures/<?php echo $donnees['photo_vehicule']; ?>.jpg">
                     <p class="vehicule">
-                        Type véhicule : <?php echo $donnees['type_vehicule']; ?></br>
+                        Marque : <?php echo $json->{"marque"}; ?><br>
                     </p>
                     <fieldset>
                         <legend>Caractéristiques du véhicule</legend>
+                        <p class="vehicule">Type véhicule : <?php echo $donnees['type_vehicule']; ?></p>
                         <p class="vehicule">Moteur : <?php echo $json->{"moteur"}; ?></p>
                         <p class="vehicule">Boîte de vitesse : <?php echo $json->{"vitesse"}; ?></p>
                         <p class="vehicule">Nombres de places : <?php echo $json->{"nbPlace"}; ?></p>
+                        <p class="vehicule">Couleur : <?php echo $json->{"couleur"}; ?></p>
                     </fieldset>
                     <p class="vehicule">
                         Prix : <?php echo $donnees['prix_vehicule']; ?> €/Jour
@@ -161,7 +163,7 @@
 
                         <?php
 
-                        } elseif ($donnees['location_vehicule'] == $_SESSION['id_entreprise']) {
+                        } else {
 
                             $req = $pdo->query('SELECT * FROM facturation');
                             $facturation = $req->fetch();

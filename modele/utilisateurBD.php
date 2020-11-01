@@ -2,7 +2,7 @@
 //fichier php gérant les requêtes de la base de données pour les utilisateurs
 
 //fonction vérifiant s'il existe des doublons
-function verif_dbl($mail, $choix) {
+function verif_dbl($mail) {
 
 	require ('./modele/connect.php');
 
@@ -50,17 +50,6 @@ function ident_entreprise($mail, $c){
 	$donnees_entreprise = $sql->fetch(PDO::FETCH_ASSOC);
 	$sql->closeCursor();
 	return $donnees_entreprise;
-}
-
-//fonction permettant les insertion dans la table client
-function insert_client($nom, $c, $mail){
-
-	require ('./modele/connect.php');
-
-	// Pour inserer les données 
-	$req = $pdo->prepare('INSERT INTO client (nom_client, mdp_client, mail_client) VALUES(?,?,?)');
-	$req->execute(array($nom, $c, $mail));
-
 }
 
 //fonction permettant les insertion dans la table entreprise

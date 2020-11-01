@@ -7,6 +7,8 @@ function publierAnnonce()
     $voiture = isset($_POST['voiture']) ? ($_POST['voiture']) : '';
     $moteur = isset($_POST['moteur']) ? ($_POST['moteur']) : '';
     $vitesse = isset($_POST['vitesse']) ? ($_POST['vitesse']) : '';
+    $couleur = isset($_POST['couleur']) ? ($_POST['couleur']) : '';
+    $marque = isset($_POST['marque']) ? ($_POST['marque']) : '';
     $nbPlace = isset($_POST['nbPlace']) ? ($_POST['nbPlace']) : '';
     $prix = isset($_POST['prix']) ? ($_POST['prix']) : '';
     $msg = "";
@@ -22,9 +24,9 @@ function publierAnnonce()
             $msg = 'Format de prix non respecté !';
             require('./vue/tpl/annonce.tpl');
         } else {
-            $v = array("moteur" => $moteur, "vitesse" => $vitesse, "nbPlace" => $nbPlace);
+            $v = array("marque" => $marque, "couleur" => $couleur, "moteur" => $moteur, "vitesse" => $vitesse, "nbPlace" => $nbPlace);
             $json = json_encode($v);
-            insert_vehicule($voiture, $json, $prix);
+            insert_vehicule($voiture, $json, $marque, $couleur, $prix);
             $msg = 'Annonce publiée avec succès !';
             require('./vue/tpl/annonce.tpl');
         }

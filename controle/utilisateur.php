@@ -5,7 +5,6 @@ function insert() {
 
     require ('./modele/utilisateurBD.php');
 
-    $choix = isset($_POST['choix'])?($_POST['choix']):'';
     $nom = isset($_POST['nom'])?($_POST['nom']):'';
     $mdp = isset($_POST['mdp'])?($_POST['mdp']):'';
     $mdp2 = isset($_POST['mdp2'])?($_POST['mdp2']):'';
@@ -16,37 +15,28 @@ function insert() {
     if (count($_POST) == 0){
         require ('./vue/tpl/inscription.tpl');
     } else {
-        if (verif_dbl($mail, $choix) == false) {
+        if (verif_dbl($mail) == false) {
             $msg="Le mail est déjà utilisé !";
             require ('./vue/tpl/inscription.tpl');
         } elseif($mdp != $mdp2) {
             $msg="Les mots de passe ne concordent pas !";
             require ('./vue/tpl/inscription.tpl');
+        } elseif(!preg_match("#^[a-z0-9]+$#", $nom)) {
+            $msg = "Le nom doit être renseigné en lettres minuscules sans accents, sans caractères spéciaux !";
+            require ('./vue/tpl/inscription.tpl');
         } else {
-            if ($choix == "loueur") {
-                //insertion des données dans la base de données
-                insert_client($nom, $c, $mail);
-                //recupération des données
-                $donnees_client = ident_client($mail, $c);
-;
-                $_SESSION['profil'] = $donnees_client;
-                $_SESSION['nom'] = $donnees_client['nom_client'];
-                $_SESSION['mail'] = $donnees_client['mail_client'];
-                $_SESSION['id_client'] = $donnees_client['id_client'];
-                $_SESSION['id'] = $choix;
-            } else {
-                //insertion des données dans la base de données
-                insert_entreprise($nom, $c, $mail);
-                //recupération des données
-                $donnees_entreprise = ident_entreprise($mail, $c);
+            //insertion des données dans la base de données
+            insert_entreprise($nom, $c, $mail);
+            //recupération des données
+            $donnees_entreprise = ident_entreprise($mail, $c);
+            $choix = 'entreprise';
 
-                $_SESSION['profil'] = $donnees_entreprise;
-                $_SESSION['nom'] = $donnees_entreprise['nom_entreprise'];
-                $_SESSION['mail'] = $donnees_entreprise['mail_entreprise'];
-                $_SESSION['id_entreprise'] = $donnees_entreprise['id_entreprise'];
-                $_SESSION['id'] = $choix;
-            }
-
+            $_SESSION['profil'] = $donnees_entreprise;
+            $_SESSION['nom'] = $donnees_entreprise['nom_entreprise'];
+            $_SESSION['mail'] = $donnees_entreprise['mail_entreprise'];
+            $_SESSION['id_entreprise'] = $donnees_entreprise['id_entreprise'];
+            $_SESSION['id'] = $choix;
+            
             $msg="Inscription réussie !";
             require ('./vue/tpl/accueil.tpl');
         }

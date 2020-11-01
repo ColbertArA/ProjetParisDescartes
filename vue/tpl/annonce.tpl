@@ -66,6 +66,33 @@
                         <label for="voiture">Type de la voiture</label> :
                         <input type="text" name="voiture" required placeholder="206">
                     </p>
+                    <p>Marque de la voiture :<br><br>
+                        <select name="marque">
+                            <option value="Audi">Audi</option>
+                            <option value="Citroen">Citroen</option>
+                            <option value="Ferrari">Ferrari</option>
+                            <option value="Ford">Ford</option>
+                            <option value="Mercedes">Mercedes</option>
+                            <option value="Peugeot">Peugeot</option>
+                            <option value="Renault">Renault</option>
+                            <option value="Seat">Seat</option>
+                            <option value="Tesla">Tesla</option>
+                            <option value="Volkswagen">Volkswagen</option>
+                        </select>
+                    </p>
+                    <p>Couleur de la voiture :<br><br>
+                        <select name="couleur">
+                            <option value="Rouge">Rouge</option>
+                            <option value="Jaune">Jaune</option>
+                            <option value="Bleu">Bleu</option>
+                            <option value="Vert">Vert</option>
+                            <option value="Orange">Orange</option>
+                            <option value="Violet">Violet</option>
+                            <option value="Noir">Noir</option>
+                            <option value="Gris">Gris</option>
+                            <option value="Blanc">Blanc</option>
+                        </select>
+                    </p>
                     <p>Type de moteur :<br><br>
                         <select name="moteur">
                             <option value="Essence">Essence</option>

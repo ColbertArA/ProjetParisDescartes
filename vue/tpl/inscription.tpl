@@ -49,12 +49,7 @@
                         <label for="courriel">Mail</label> :
                         <input type="email" name="mail" required placeholder="utilisateur@mail.com">
                     </p>
-                    <p>Qui êtes-vous ?<br><br>
-                        <select name="choix">
-                            <option value="entreprise">Entreprise</option>
-                            <option value="loueur">Loueur</option>
-                        </select>
-                    </p>
+                        
                 </div>
             </fieldset>
             <p>

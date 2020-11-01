@@ -2,15 +2,16 @@
 //fichier php gérant les requêtes de la base données pour les véhicules
 
 //inserer les véhicules dans la base de données
-function insert_vehicule($voiture, $json, $prix){
+function insert_vehicule($voiture, $json, $marque, $couleur, $prix){
 
     $nb = 1;
     $location = "disponible";
+    $nom_photo = $marque . $voiture . $couleur;
 
     require ('./modele/connect.php');
 
     $req = $pdo->prepare('INSERT INTO vehicule (id_client, type_vehicule, nb_vehicule, caract_vehicule, location_vehicule, prix_vehicule, photo_vehicule) VALUES (?,?,?,?,?,?,?)');
-    $req->execute(array($_SESSION['id_client'], $voiture, $nb, $json, $location, $prix, $voiture));
+    $req->execute(array($_SESSION['id_client'], $voiture, $nb, $json, $location, $prix, $nom_photo));
 
     stockVehicule($voiture);
 }
