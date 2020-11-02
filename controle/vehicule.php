@@ -14,21 +14,21 @@ function publierAnnonce()
     $msg = "";
 
     if (count($_POST) == 0) {
-        require('./vue/tpl/annonce.tpl');
+        require ('./vue/tpl/annonce.tpl');
     } else {
-        require('./modele/vehiculeBD.php');
+        require ('./modele/vehiculeBD.php');
         if (!preg_match('/^[0-8]*$/', $nbPlace)) {
             $msg = 'Format de nombres de places non respecté ou dépassé !';
-            require('./vue/tpl/annonce.tpl');
+            require ('./vue/tpl/annonce.tpl');
         } elseif (!preg_match('/^[0-9]*$/', $prix)) {
             $msg = 'Format de prix non respecté !';
-            require('./vue/tpl/annonce.tpl');
+            require ('./vue/tpl/annonce.tpl');
         } else {
             $v = array("marque" => $marque, "couleur" => $couleur, "moteur" => $moteur, "vitesse" => $vitesse, "nbPlace" => $nbPlace);
             $json = json_encode($v);
             insert_vehicule($voiture, $json, $marque, $couleur, $prix);
             $msg = 'Annonce publiée avec succès !';
-            require('./vue/tpl/annonce.tpl');
+            require ('./vue/tpl/annonce.tpl');
         }
     }
 }
@@ -37,7 +37,8 @@ function publierAnnonce()
 function voirVehicule()
 {
 
-    require('./modele/vehiculeBD.php');
+    require ('./modele/vehiculeBD.php');
+    require ('./modele/facturationBD.php');
     $dateD = isset($_POST['dateD']) ? ($_POST['dateD']) : '';
     $dateF = isset($_POST['dateF']) ? ($_POST['dateF']) : '';
     $idU = $_GET['idU'];
@@ -45,25 +46,25 @@ function voirVehicule()
     $msg = "";
 
     if (count($_POST) == 0) {
-        require('./vue/tpl/vehicule.tpl');
+        require ('./vue/tpl/vehicule.tpl');
     } else {
-        require('./controle/temps.php');
+        require ('./controle/temps.php');
         $prix = $donnees['prix_vehicule'];
         $duree = jourTotal($dateD, $dateF);
         if ($duree < 0 && $dateF != null) {
             $msg = "Location impossible car les dates ne correspondent pas !";
-            require('./vue/tpl/vehicule.tpl');
+            require ('./vue/tpl/vehicule.tpl');
         } elseif ($dateF == 0) {
             $mensualite = $prix * mensualite($prix, $dateD);
             $dateNull = null;
             $paiement = "réglement_non_termine(mensualités)";
-            louer_vehicule($idU, $dateD, $dateNull, $mensualite, $paiement);
-            require('./vue/ident.tpl');
+            nvleFacture($idU, $dateD, $dateNull, $mensualite, $paiement);
+            require ('./vue/ident.tpl');
         } else {
             $total = $prix * $duree;
             $paiement = "réglement fait";
-            louer_vehicule($idU, $dateD, $dateF, $total, $paiement);
-            require('./vue/ident.tpl');
+            nvleFacture($idU, $dateD, $dateF, $total, $paiement);
+            require ('./vue/ident.tpl');
         }
     }
 }
@@ -101,6 +102,5 @@ function vehiculeDisponible() {
     vehicule_disponible($idU);
     require ('./vue/tpl/profil.tpl');
 }
-
 
 ?>

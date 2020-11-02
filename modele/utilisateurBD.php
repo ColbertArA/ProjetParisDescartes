@@ -63,4 +63,16 @@ function insert_entreprise($nom, $c, $mail){
 
 }
 
+//fonction qui renvoie le nombre d'entreprise dans la bdd
+function nbEntreprise(){
+
+	require ('./modele/connect.php');
+
+	$req = $pdo->prepare('SELECT COUNT(*) AS nb FROM entreprise');
+	$req->execute();
+	$d = $req->fetch();
+
+	return $nb = $d['nb'];
+}
+
 ?>

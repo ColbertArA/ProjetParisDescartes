@@ -89,6 +89,7 @@ function ident() {
     }
 }
 
+//affichele profil d'un utilisateur
 function profil(){
     if (count($_POST) == 0){
         require ('./vue/tpl/profil.tpl');
