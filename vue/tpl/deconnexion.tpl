@@ -29,11 +29,7 @@
 
     <div class="formulaire" id="page">
         <p>
-            <?php echo $msg;
-            $mois=11;
-            $i=4;
-            require ('./modele/facturationBD.php');
-            facturesDuMois($mois, $i); ?>
+            <?php echo $msg; ?>
         </p>
     </div>
 

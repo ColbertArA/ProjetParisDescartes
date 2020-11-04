@@ -69,7 +69,7 @@
                     <p>Marque de la voiture :<br><br>
                         <select name="marque">
                             <option value="Audi">Audi</option>
-                            <option value="Citroen">Citroen</option>
+                            <option value="Citroën">Citroën</option>
                             <option value="Ferrari">Ferrari</option>
                             <option value="Ford">Ford</option>
                             <option value="Mercedes">Mercedes</option>
