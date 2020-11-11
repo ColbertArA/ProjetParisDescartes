@@ -55,10 +55,7 @@ ADD ( CONSTRAINT FK_facturation_id_entreprise
 -- Insertion des données dans la bdd
 
 INSERT INTO client (id_client, nom_client, mdp_client, mail_client) VALUES 
-(1, 'Loic Lim', SHA1('AZERTY'), 'loic.lim@mail.com'),
-(2, 'Aravindan Colbert', SHA1('1234 '), 'aravindan.colbert@mail.com'),
-(3, 'Karim Karl', SHA1('motdepasse'), 'karim.karl@gmail.com'),
-(4, 'Julien Sunshine', SHA1('password'), 'julien.sunshine@mail.com');
+(1, 'Julien Sunshine', SHA1('password'), 'julien.sunshine@mail.com');
 
 INSERT INTO entreprise (id_entreprise, nom_entreprise, mdp_entreprise, mail_entreprise) VALUES
 (1, 'Bouygues Telecom', SHA1('76DXLpid2'), 'CEO@bouygues.fr'),
@@ -67,15 +64,16 @@ INSERT INTO entreprise (id_entreprise, nom_entreprise, mdp_entreprise, mail_entr
 (4, 'Microsoft', SHA1('zfC63Q4Wm'), 'employe1@microsoft.fr');
 
 INSERT INTO vehicule (id_vehicule, id_client, type_vehicule, nb_vehicule, caract_vehicule, location_vehicule, prix_vehicule, photo_vehicule) VALUES
-(1, 2, 'Clio', 1, '{"marque":"Renault","couleur":"Blanc","moteur":"Diesel", "vitesse":"Manuelle", "nbPlace":"5"}', 'disponible', 45, 'RenaultClioBlanc'),
-(2, 4, 'Tributo', 1, '{"marque":"Ferrari","couleur":"Rouge","moteur":"Diesel", "vitesse":"Manuelle", "nbPlace":"2"}', '4', 200, 'FerrariTributoRouge'),
-(3, 1, 'Mustang', 1, '{"marque":"Ford","couleur":"Vert","moteur":"Essence", "vitesse":"Manuelle", "nbPlace":"5"}', 'disponible', 85, 'FordMustangVert'),
-(4, 2, 'C3', 1, '{"marque":"Citroën","couleur":"Rouge","moteur":"Diesel", "vitesse":"Manuelle", "nbPlace":"5"}', 'en_revision', 36, 'CitroënC3Rouge'),
-(5, 1, 'Model X', 1, '{"marque":"Tesla","couleur":"Blanc","moteur":"Electrique", "vitesse":"Automatique", "nbPlace":"7"}', '2', 175, 'TeslaModel XBlanc'),
-(6, 3, 'POLO', 1, '{"marque":"Volkswagen","couleur":"Gris","moteur":"Essence", "vitesse":"Manuelle", "nbPlace":"5"}', 'disponible', 27, 'VolkswagenPOLOGris'),
-(7, 4, '206', 1, '{"marque":"Peugeot","couleur":"Gris","moteur":"Essence", "vitesse":"Manuelle", "nbPlace":"5"}', 'disponible', 25, 'Peugeot206Gris'),
-(8, 1, 'AMI', 1, '{"marque":"Citroën","couleur":"Vert","moteur":"Electrique", "vitesse":"Automatique", "nbPlace":"2"}', 'disponible', 75, 'CitroënAMIVert');
+(1, 1, 'Clio', 1, '{"marque":"Renault","couleur":"Blanc","moteur":"Diesel", "vitesse":"Manuelle", "nbPlace":"5"}', '2', 45, 'RenaultClioBlanc1'),
+(2, 1, 'Tributo', 1, '{"marque":"Ferrari","couleur":"Rouge","moteur":"Diesel", "vitesse":"Manuelle", "nbPlace":"2"}', '4', 200, 'FerrariTributoRouge2'),
+(3, 1, 'Mustang', 1, '{"marque":"Ford","couleur":"Vert","moteur":"Essence", "vitesse":"Manuelle", "nbPlace":"5"}', 'disponible', 85, 'FordMustangVert3'),
+(4, 1, 'C3', 1, '{"marque":"Citroën","couleur":"Rouge","moteur":"Diesel", "vitesse":"Manuelle", "nbPlace":"5"}', 'en_revision', 36, 'CitroënC3Rouge4'),
+(5, 1, 'Model X', 1, '{"marque":"Tesla","couleur":"Blanc","moteur":"Electrique", "vitesse":"Automatique", "nbPlace":"7"}', '2', 175, 'TeslaModel XBlanc5'),
+(6, 1, 'POLO', 1, '{"marque":"Volkswagen","couleur":"Gris","moteur":"Essence", "vitesse":"Manuelle", "nbPlace":"5"}', 'disponible', 27, 'VolkswagenPOLOGris6'),
+(7, 1, '206', 1, '{"marque":"Peugeot","couleur":"Gris","moteur":"Essence", "vitesse":"Manuelle", "nbPlace":"5"}', 'disponible', 25, 'Peugeot206Gris7'),
+(8, 1, 'AMI', 1, '{"marque":"Citroën","couleur":"Vert","moteur":"Electrique", "vitesse":"Automatique", "nbPlace":"2"}', 'disponible', 75, 'CitroënAMIVert8');
 
 INSERT INTO facturation (id_facturation, id_vehicule, id_entreprise, dateD_facturation, dateF_facturation, valeur_facturation, etat_facturation) VALUES
 (1, 2, 4, '2020-12-1', '2021-01-01', 6400, 'réglement fait'),
-(2, 5, 2, '2020-11-01', NULL, 5250, 'réglement_non_termine(mensualités)');
+(2, 5, 2, '2020-11-20', NULL, 5250, 'réglement_non_termine(mensualités)'),
+(3, 1, 2, '2020-11-30', '2020-12-20', 945, 'réglement fait');

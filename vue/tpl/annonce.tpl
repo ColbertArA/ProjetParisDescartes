@@ -58,7 +58,7 @@
 
         <h1>Renseigner les informations de votre véhicule M./Mme. <?php echo $_SESSION['nom']; ?> </h1>
         
-        <form action="index.php?controle=vehicule&action=publierAnnonce" method="post">
+        <form action="index.php?controle=vehicule&action=publierAnnonce" method="post" enctype="multipart/form-data">
             <fieldset class="cadre">
                 <div class="info">
                     <legend>Informations du véhicule :</legend>
@@ -114,6 +114,10 @@
                     <p>
                         <label for="prix">Prix (en €/jour)</label> :
                         <input type="text" name="prix" required>
+                    </p>
+                    <p>
+                        <label for="photo">Choisissez une image</label> :
+                        <input type="file" name="photo" required>
                     </p>
                 </div>
             </fieldset>

@@ -27,13 +27,46 @@ function publierAnnonce()
             $v = array("marque" => $marque, "couleur" => $couleur, "moteur" => $moteur, "vitesse" => $vitesse, "nbPlace" => $nbPlace);
             $json = json_encode($v);
             insert_vehicule($voiture, $json, $marque, $couleur, $prix);
+            $id = getIdVehicule();
+            upload($marque, $voiture, $couleur, $id);
             $msg = 'Annonce publiée avec succès !';
             require ('./vue/tpl/annonce.tpl');
         }
     }
 }
 
-// permet d'afficher un page du véhicule choisit par une entreprise
+//fonction permettant d'upload une image de voiture
+function upload($marque, $voiture, $couleur, $id)
+{
+
+    if (isset($_POST['publier'])) {
+        $fichier = isset($_FILES['photo']) ? ($_FILES['photo']) : '';
+
+        $nomFichier = isset($_FILES['photo']['name']) ? ($_FILES['photo']['name']) : '';
+        $tmpFichier = isset($_FILES['photo']['tmp_name']) ? ($_FILES['photo']['tmp_name']) : '';
+        $erreurFichier = isset($_FILES['photo']['error']) ? ($_FILES['photo']['error']) : '';
+        $typeFichier = isset($_FILES['photo']['type']) ? ($_FILES['photo']['type']) : '';
+
+        $fichierExt = explode('.', $nomFichier);
+        $fichierActuelleExt = strtolower(end($fichierExt));
+
+        $extAutorise = array('jpg');
+
+        if (in_array($fichierActuelleExt, $extAutorise)) {
+            if ($erreurFichier === 0) {
+                $newFileName = $marque . $voiture . $couleur . $id . "." . $fichierActuelleExt;
+                $destinationFichier = './vue/photos_voitures' . $newFileName;
+                move_uploaded_file($tmpFichier, $destinationFichier);
+            } else {
+                echo "Il une erreure lors de l'upload de votre image !";
+            }
+        } else {
+            echo "L'extension de ce fichier n'est pas pris en charge par le site !";
+        }
+    }
+}
+
+// permet d'afficher un page du véhicule choisit par une entreprise et de louer le véhicule choisit
 function voirVehicule()
 {
 
@@ -45,13 +78,17 @@ function voirVehicule()
     $donnees = reqLocation($idU);
     $msg = "";
 
+    $today = date('Y-m-d');
+    list($anneeActuel, $moisActuel, $jourActuel) = explode('-', $today);
+
     if (count($_POST) == 0) {
         require ('./vue/tpl/vehicule.tpl');
     } else {
         require ('./controle/temps.php');
         $prix = $donnees['prix_vehicule'];
         $duree = jourTotal($dateD, $dateF);
-        if ($duree < 0 && $dateF != null) {
+        list($anneeD, $moisD, $jourD) = explode('-', $dateD);
+        if ($duree < 0 && $dateF != null || $jourActuel >= $jourD && $moisActuel >= $moisD && $anneeActuel >= $anneeD) {
             $msg = "Location impossible car les dates ne correspondent pas !";
             require ('./vue/tpl/vehicule.tpl');
         } elseif ($dateF == 0) {
@@ -80,7 +117,8 @@ function supprimerVehicule()
 }
 
 //fonction permettant aux loueur de mettre leur véhicules en révision
-function modifierVehicule() {
+function modifierVehicule()
+{
 
     $idU = $_GET['idU'];
 
@@ -94,7 +132,8 @@ function modifierVehicule() {
 }
 
 //fonction permettant aux loueur de mettre leur véhicule disponible
-function vehiculeDisponible() {
+function vehiculeDisponible()
+{
 
     $idU = $_GET['idU'];
 

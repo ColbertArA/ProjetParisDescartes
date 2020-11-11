@@ -1,7 +1,8 @@
 <?php
 
 //fonction permettant l'inscription d'un client ou d'une entreprise dans la base de données
-function insert() {
+function insert() 
+{
 
     require ('./modele/utilisateurBD.php');
 
@@ -44,7 +45,8 @@ function insert() {
 }
 
 //fonction permettant à la connexion des utilisateurs
-function ident() {
+function ident() 
+{
 
     require ('./modele/utilisateurBD.php');
 
@@ -90,14 +92,16 @@ function ident() {
 }
 
 //affichele profil d'un utilisateur
-function profil(){
+function profil()
+{
     if (count($_POST) == 0){
         require ('./vue/tpl/profil.tpl');
     }
 }
 
 //fonction permettant à un l'utilisateur de se déconnecter
-function deconnexion() {
+function deconnexion()
+{
     $msg="";
     $_SESSION = array();
     session_destroy();

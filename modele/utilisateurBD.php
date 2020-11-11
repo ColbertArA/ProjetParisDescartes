@@ -2,7 +2,8 @@
 //fichier php gérant les requêtes de la base de données pour les utilisateurs
 
 //fonction vérifiant s'il existe des doublons
-function verif_dbl($mail) {
+function verif_dbl($mail)
+{
 
 	require ('./modele/connect.php');
 
@@ -27,7 +28,8 @@ function verif_dbl($mail) {
 }
 
 //function permettant de renvoyer les données de la table client
-function ident_client($mail, $c){
+function ident_client($mail, $c)
+{
 
 	require ('./modele/connect.php');
 
@@ -40,7 +42,8 @@ function ident_client($mail, $c){
 }
 
 //fonction permettant de renvoyer les données de la table entreprise
-function ident_entreprise($mail, $c){
+function ident_entreprise($mail, $c)
+{
 
 	require ('./modele/connect.php');
 
@@ -53,7 +56,8 @@ function ident_entreprise($mail, $c){
 }
 
 //fonction permettant les insertion dans la table entreprise
-function insert_entreprise($nom, $c, $mail){
+function insert_entreprise($nom, $c, $mail)
+{
 
 	require ('./modele/connect.php');
 
@@ -64,7 +68,8 @@ function insert_entreprise($nom, $c, $mail){
 }
 
 //fonction qui renvoie le nombre d'entreprise dans la bdd
-function nbEntreprise(){
+function nbEntreprise()
+{
 
 	require ('./modele/connect.php');
 

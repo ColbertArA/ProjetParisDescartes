@@ -165,7 +165,8 @@
 
                         } else {
 
-                            $req = $pdo->query('SELECT * FROM facturation');
+                            $req = $pdo->prepare('SELECT * FROM facturation WHERE id_vehicule = :id');
+                            $req->execute(array('id' => $donnees['id_vehicule']));
                             $facturation = $req->fetch();
 
                         ?>
