@@ -70,11 +70,11 @@ INSERT INTO vehicule (id_vehicule, id_client, type_vehicule, nb_vehicule, caract
 (1, 2, 'Clio', 1, '{"marque":"Renault","couleur":"Blanc","moteur":"Diesel", "vitesse":"Manuelle", "nbPlace":"5"}', 'disponible', 45, 'RenaultClioBlanc'),
 (2, 4, 'Tributo', 1, '{"marque":"Ferrari","couleur":"Rouge","moteur":"Diesel", "vitesse":"Manuelle", "nbPlace":"2"}', '4', 200, 'FerrariTributoRouge'),
 (3, 1, 'Mustang', 1, '{"marque":"Ford","couleur":"Vert","moteur":"Essence", "vitesse":"Manuelle", "nbPlace":"5"}', 'disponible', 85, 'FordMustangVert'),
-(4, 2, 'C3', 1, '{"marque":"Citroën","couleur":"Rouge","moteur":"Diesel", "vitesse":"Manuelle", "nbPlace":"5"}', 'en_revision', 36, 'CitroenC3Rouge'),
+(4, 2, 'C3', 1, '{"marque":"Citroën","couleur":"Rouge","moteur":"Diesel", "vitesse":"Manuelle", "nbPlace":"5"}', 'en_revision', 36, 'CitroënC3Rouge'),
 (5, 1, 'Model X', 1, '{"marque":"Tesla","couleur":"Blanc","moteur":"Electrique", "vitesse":"Automatique", "nbPlace":"7"}', '2', 175, 'TeslaModel XBlanc'),
 (6, 3, 'POLO', 1, '{"marque":"Volkswagen","couleur":"Gris","moteur":"Essence", "vitesse":"Manuelle", "nbPlace":"5"}', 'disponible', 27, 'VolkswagenPOLOGris'),
 (7, 4, '206', 1, '{"marque":"Peugeot","couleur":"Gris","moteur":"Essence", "vitesse":"Manuelle", "nbPlace":"5"}', 'disponible', 25, 'Peugeot206Gris'),
-(8, 1, 'AMI', 1, '{"marque":"Citroën","couleur":"Vert","moteur":"Electrique", "vitesse":"Automatique", "nbPlace":"2"}', 'disponible', 75, 'CitroenAMIVert');
+(8, 1, 'AMI', 1, '{"marque":"Citroën","couleur":"Vert","moteur":"Electrique", "vitesse":"Automatique", "nbPlace":"2"}', 'disponible', 75, 'CitroënAMIVert');
 
 INSERT INTO facturation (id_facturation, id_vehicule, id_entreprise, dateD_facturation, dateF_facturation, valeur_facturation, etat_facturation) VALUES
 (1, 2, 4, '2020-12-1', '2021-01-01', 6400, 'réglement fait'),
