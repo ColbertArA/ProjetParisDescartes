@@ -44,21 +44,4 @@ function estBissextile($annee)
     return date("m-d", strtotime("$annee-02-29")) == "02-29";
 }
 
-//fonction qui envoie le mois courant 
-function facture()
-{
-
-    require ('./modele/vehiculeBD.php');
-    require ('./modele/utilisateurBD.php');
-
-    $today = date('Y-m-d');
-    list($annee, $moisActuel, $jour) = explode('-', $today);
-    $nb = nbEntreprise();
-
-    for ($i = 0; $i <= $nb; $i++){
-
-        facturesDuMois($moisActuel, $i);
-    }
-}
-
 ?>
