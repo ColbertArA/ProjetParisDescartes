@@ -126,7 +126,7 @@
                     $json = json_decode($v);
                 ?>
                     
-                    <img src="./vue/photos_voitures/<?php echo $donnees['photo_vehicule']; ?>.jpg" width="1100">
+                    <img src="./vue/photos_voitures/<?php echo $donnees['photo_vehicule']; ?>.jpg" width="870">
                     <p class="vehicule">
                         Marque : <?php echo $json->{"marque"}; ?><br>
                     </p>
@@ -193,8 +193,6 @@
             ?>
             </div>
         </div>
-
-
     </div>
 
     <!-- Fin page -->

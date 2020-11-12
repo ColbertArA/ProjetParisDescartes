@@ -8,7 +8,7 @@ function insert_vehicule($voiture, $json, $marque, $couleur, $prix)
     $id = getIdVehicule();
     $nb = 1;
     $location = "disponible";
-    $nom_photo = $marque . $voiture . $couleur . $id ;
+    $nom_photo = $marque . $voiture . $couleur . $id;
 
     require ('./modele/connect.php');
 
@@ -58,7 +58,7 @@ function reqLocation($idU)
     $sql = $pdo->prepare('SELECT * FROM vehicule WHERE id_vehicule = :idU');
     $sql->execute(array('idU' => $idU));
     $donnees = $sql->fetch(PDO::FETCH_ASSOC);
-    return $donnees['MAX(id_vehicule)'] + 1;
+    return $donnees;
 }
 
 // insert dans la bdd une facturation de la location d'un véhicule part une entreprise

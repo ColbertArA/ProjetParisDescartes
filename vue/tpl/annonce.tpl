@@ -56,7 +56,7 @@
         
         ?>
 
-        <h1>Renseigner les informations de votre véhicule M./Mme. <?php echo $_SESSION['nom']; ?> </h1>
+        <h1>Renseigner les informations de votre véhicule <?php echo $_SESSION['nom']; ?> </h1>
         
         <form action="index.php?controle=vehicule&action=publierAnnonce" method="post" enctype="multipart/form-data">
             <fieldset class="cadre">

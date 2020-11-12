@@ -57,7 +57,7 @@
         
         ?>
 
-        <h1>Bienvenue M./Mme. <?php echo $_SESSION['nom']; ?> </h1>
+        <h1>Bienvenue <?php echo $_SESSION['nom']; ?> </h1>
         <p>Vous êtes un/une <?php echo $_SESSION['id']; ?> </p>
 
         <?php
