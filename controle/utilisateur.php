@@ -1,4 +1,5 @@
 <?php
+//fichier permettant la gestion des utilisateurs
 
 //fonction permettant l'inscription d'un client ou d'une entreprise dans la base de données
 function insert() 

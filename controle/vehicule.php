@@ -1,4 +1,5 @@
 <?php
+//fichier permettant la gestion des véhicules
 
 //fonction permettant de publier une voiture 
 function publierAnnonce()
